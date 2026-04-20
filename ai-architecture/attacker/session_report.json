@@ -1,112 +1,13 @@
 {
-  "session_end": "2026-04-20T15:24:44.005870",
-  "total_sent": 1084,
-  "total_blocked": 40,
-  "total_evaded": 406,
+  "session_end": "2026-04-20T15:56:25.227688",
+  "total_sent": 76,
+  "total_blocked": 9,
+  "total_evaded": 2,
   "total_alerted": 4,
-  "generations": 36,
+  "generations": 2,
   "evaded_profiles": [
     {
-      "profile": "PortScanxPortScan_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g20_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g19_g20_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g20_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7",
-      "sent": 17,
-      "blocked": 0,
-      "evaded": 17,
-      "alerted": 0,
-      "classes": {
-        "none": 17
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9",
-      "sent": 18,
-      "blocked": 0,
-      "evaded": 18,
-      "alerted": 0,
-      "classes": {
-        "none": 18
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g16",
-      "sent": 12,
-      "blocked": 0,
-      "evaded": 12,
-      "alerted": 0,
-      "classes": {
-        "none": 12
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g22",
+      "profile": "PortScan_TCP",
       "sent": 2,
       "blocked": 0,
       "evaded": 2,
@@ -117,527 +18,97 @@
       "evasion_rate": 1.0
     },
     {
-      "profile": "PortScanxPortScan_g22",
-      "sent": 5,
+      "profile": "LateralMovement_SMB",
+      "sent": 1,
       "blocked": 0,
-      "evaded": 5,
-      "alerted": 0,
+      "evaded": 0,
+      "alerted": 1,
       "classes": {
-        "none": 5
+        "UnknownHighSeverity": 1
       },
-      "evasion_rate": 1.0
+      "evasion_rate": 0.0
     },
     {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g22",
+      "profile": "DoS_UDP_Flood",
       "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
+      "blocked": 2,
+      "evaded": 0,
       "alerted": 0,
       "classes": {
-        "none": 2
+        "UnknownLowSeverity": 2
       },
-      "evasion_rate": 1.0
+      "evasion_rate": 0.0
     },
     {
-      "profile": "PortScanxPortScan_g9_g22",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9",
-      "sent": 15,
-      "blocked": 0,
-      "evaded": 15,
-      "alerted": 0,
-      "classes": {
-        "none": 15
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g22_g23",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g23",
-      "sent": 3,
-      "blocked": 0,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g23",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g22_g23_g24",
-      "sent": 3,
-      "blocked": 0,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g24",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g23_g24",
-      "sent": 4,
-      "blocked": 0,
-      "evaded": 4,
-      "alerted": 0,
-      "classes": {
-        "none": 4
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g23_g24",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g25",
-      "sent": 6,
-      "blocked": 0,
-      "evaded": 6,
-      "alerted": 0,
-      "classes": {
-        "none": 6
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g22_g23_g24_g25",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g25",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g25",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g23_g24_g25",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g25_g26",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g26",
-      "sent": 7,
-      "blocked": 0,
-      "evaded": 7,
-      "alerted": 0,
-      "classes": {
-        "none": 7
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g26_g27",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g27",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g28",
-      "sent": 10,
-      "blocked": 0,
-      "evaded": 10,
-      "alerted": 0,
-      "classes": {
-        "none": 10
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g28",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g16_g28",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g25_g26_g27_g28",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g29",
-      "sent": 3,
-      "blocked": 0,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g29",
-      "sent": 6,
-      "blocked": 0,
-      "evaded": 6,
-      "alerted": 0,
-      "classes": {
-        "none": 6
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g28_g29",
-      "sent": 4,
-      "blocked": 0,
-      "evaded": 4,
-      "alerted": 0,
-      "classes": {
-        "none": 4
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g25_g26_g27_g28_g29",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g29",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g29_g30",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g30",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g29_g30",
-      "sent": 5,
-      "blocked": 0,
-      "evaded": 5,
-      "alerted": 0,
-      "classes": {
-        "none": 5
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g31",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g31",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g31",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g30_g31",
-      "sent": 3,
-      "blocked": 0,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g32",
-      "sent": 4,
-      "blocked": 1,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3,
-        "DoS/DDoS": 1
-      },
-      "evasion_rate": 0.75
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g32",
+      "profile": "Exfiltration_HTTPS",
       "sent": 1,
       "blocked": 1,
       "evaded": 0,
       "alerted": 0,
       "classes": {
+        "UnknownLowSeverity": 1
+      },
+      "evasion_rate": 0.0
+    },
+    {
+      "profile": "BruteForce_SSH",
+      "sent": 3,
+      "blocked": 1,
+      "evaded": 0,
+      "alerted": 2,
+      "classes": {
+        "UnknownHighSeverity": 3
+      },
+      "evasion_rate": 0.0
+    },
+    {
+      "profile": "C2_Beacon",
+      "sent": 2,
+      "blocked": 2,
+      "evaded": 0,
+      "alerted": 0,
+      "classes": {
+        "UnknownLowSeverity": 2
+      },
+      "evasion_rate": 0.0
+    },
+    {
+      "profile": "BruteForce_RDP",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 0,
+      "alerted": 1,
+      "classes": {
         "UnknownHighSeverity": 1
+      },
+      "evasion_rate": 0.0
+    },
+    {
+      "profile": "DNS_Tunnel",
+      "sent": 2,
+      "blocked": 2,
+      "evaded": 0,
+      "alerted": 0,
+      "classes": {
+        "DNSTunnel": 2
+      },
+      "evasion_rate": 0.0
+    },
+    {
+      "profile": "DoS_SYN_Flood",
+      "sent": 1,
+      "blocked": 1,
+      "evaded": 0,
+      "alerted": 0,
+      "classes": {
+        "PortScan": 1
       },
       "evasion_rate": 0.0
     }
   ],
   "top_evaders": [
     {
-      "profile": "PortScanxPortScan_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g20_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g19_g20_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g20_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7",
-      "sent": 17,
-      "blocked": 0,
-      "evaded": 17,
-      "alerted": 0,
-      "classes": {
-        "none": 17
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9",
-      "sent": 18,
-      "blocked": 0,
-      "evaded": 18,
-      "alerted": 0,
-      "classes": {
-        "none": 18
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g21",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g16",
-      "sent": 12,
-      "blocked": 0,
-      "evaded": 12,
-      "alerted": 0,
-      "classes": {
-        "none": 12
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g22",
+      "profile": "PortScan_TCP",
       "sent": 2,
       "blocked": 0,
       "evaded": 2,
@@ -646,423 +117,53 @@
         "none": 2
       },
       "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g22",
-      "sent": 5,
-      "blocked": 0,
-      "evaded": 5,
-      "alerted": 0,
-      "classes": {
-        "none": 5
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g22",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g22",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9",
-      "sent": 15,
-      "blocked": 0,
-      "evaded": 15,
-      "alerted": 0,
-      "classes": {
-        "none": 15
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g22_g23",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g23",
-      "sent": 3,
-      "blocked": 0,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g23",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g22_g23_g24",
-      "sent": 3,
-      "blocked": 0,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g24",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g23_g24",
-      "sent": 4,
-      "blocked": 0,
-      "evaded": 4,
-      "alerted": 0,
-      "classes": {
-        "none": 4
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g23_g24",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g25",
-      "sent": 6,
-      "blocked": 0,
-      "evaded": 6,
-      "alerted": 0,
-      "classes": {
-        "none": 6
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g22_g23_g24_g25",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g25",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g25",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g23_g24_g25",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g25_g26",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g26",
-      "sent": 7,
-      "blocked": 0,
-      "evaded": 7,
-      "alerted": 0,
-      "classes": {
-        "none": 7
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g26_g27",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g27",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g28",
-      "sent": 10,
-      "blocked": 0,
-      "evaded": 10,
-      "alerted": 0,
-      "classes": {
-        "none": 10
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g28",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g16_g28",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g25_g26_g27_g28",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g29",
-      "sent": 3,
-      "blocked": 0,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g29",
-      "sent": 6,
-      "blocked": 0,
-      "evaded": 6,
-      "alerted": 0,
-      "classes": {
-        "none": 6
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g28_g29",
-      "sent": 4,
-      "blocked": 0,
-      "evaded": 4,
-      "alerted": 0,
-      "classes": {
-        "none": 4
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g25_g26_g27_g28_g29",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g9_g29",
-      "sent": 2,
-      "blocked": 0,
-      "evaded": 2,
-      "alerted": 0,
-      "classes": {
-        "none": 2
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g29_g30",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g30",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g29_g30",
-      "sent": 5,
-      "blocked": 0,
-      "evaded": 5,
-      "alerted": 0,
-      "classes": {
-        "none": 5
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g31",
-      "sent": 8,
-      "blocked": 0,
-      "evaded": 8,
-      "alerted": 0,
-      "classes": {
-        "none": 8
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScan_TCP_g3_g4_g5_g6_g7_g31",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxC2_Beaco_g7_g8_g9_g31",
-      "sent": 1,
-      "blocked": 0,
-      "evaded": 1,
-      "alerted": 0,
-      "classes": {
-        "none": 1
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g30_g31",
-      "sent": 3,
-      "blocked": 0,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3
-      },
-      "evasion_rate": 1.0
-    },
-    {
-      "profile": "PortScanxPortScan_g32",
-      "sent": 4,
-      "blocked": 1,
-      "evaded": 3,
-      "alerted": 0,
-      "classes": {
-        "none": 3,
-        "DoS/DDoS": 1
-      },
-      "evasion_rate": 0.75
     }
   ],
   "population_final": [
     {
-      "name": "PortScan_TCP_g3_g4_g5_g6_g7",
-      "generation": 7,
-      "sent": 39,
+      "name": "DoS_SYN_Flood",
+      "generation": 0,
+      "sent": 1,
+      "blocked": 1,
+      "evaded": 0,
+      "evasion_rate": 0.0,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.05,
+        "rate_hz": 8000,
+        "burst_prob": 0.8,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "DoS_UDP_Flood",
+      "generation": 0,
+      "sent": 2,
+      "blocked": 2,
+      "evaded": 0,
+      "evasion_rate": 0.0,
+      "params": {
+        "bytes_in": 1400,
+        "bytes_out": 0,
+        "port_dst": 0,
+        "protocol": 17,
+        "flags": 0,
+        "entropy": 0.1,
+        "rate_hz": 6000,
+        "burst_prob": 0.7,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "PortScan_TCP",
+      "generation": 0,
+      "sent": 2,
       "blocked": 0,
-      "evaded": 39,
+      "evaded": 2,
       "evasion_rate": 1.0,
       "params": {
         "bytes_in": 60,
@@ -1077,386 +178,348 @@
       }
     },
     {
-      "name": "PortScanxC2_Beaco_g7_g8_g9",
-      "generation": 9,
-      "sent": 32,
-      "blocked": 0,
-      "evaded": 32,
-      "evasion_rate": 1.0,
-      "params": {
-        "bytes_in": 132,
-        "bytes_out": 120,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.02005185736733605,
-        "rate_hz": 285.78522576772343,
-        "burst_prob": 0.2,
-        "jitter": 0.4
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g9",
-      "generation": 9,
-      "sent": 28,
-      "blocked": 0,
-      "evaded": 28,
-      "evasion_rate": 1.0,
-      "params": {
-        "bytes_in": 130,
-        "bytes_out": 0,
-        "port_dst": 22,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.02,
-        "rate_hz": 399.8128816725107,
-        "burst_prob": 0.2,
-        "jitter": 0.4
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g16",
-      "generation": 16,
-      "sent": 18,
-      "blocked": 0,
-      "evaded": 18,
-      "evasion_rate": 1.0,
-      "params": {
-        "bytes_in": 132,
-        "bytes_out": 120,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.02,
-        "rate_hz": 400,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g34_g35_g36",
-      "generation": 36,
+      "name": "ExfiltraxBruteFor_g2",
+      "generation": 2,
       "sent": 0,
       "blocked": 0,
       "evaded": 0,
       "evasion_rate": 0.5,
       "params": {
-        "bytes_in": 114,
-        "bytes_out": 0,
-        "port_dst": 22,
+        "bytes_in": 512,
+        "bytes_out": 256,
+        "port_dst": 443,
         "protocol": 6,
         "flags": 24,
-        "entropy": 0.02182144237025023,
-        "rate_hz": 482.5597357152136,
+        "entropy": 0.95,
+        "rate_hz": 60,
         "burst_prob": 0.2,
-        "jitter": 0.4
+        "jitter": 0.2
       }
     },
     {
-      "name": "PortScanxPortScan_g36",
-      "generation": 36,
+      "name": "ExfiltraxDNS_Tunn_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 512,
+        "bytes_out": 256,
+        "port_dst": 443,
+        "protocol": 17,
+        "flags": 0,
+        "entropy": 0.95,
+        "rate_hz": 60,
+        "burst_prob": 0.1,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "BruteForxExfiltra_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 512,
+        "bytes_out": 40,
+        "port_dst": 443,
+        "protocol": 17,
+        "flags": 24,
+        "entropy": 0.2830463261056099,
+        "rate_hz": 60,
+        "burst_prob": 0.1,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "DoS_UDP_Flood_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 1072,
+        "bytes_out": 0,
+        "port_dst": 0,
+        "protocol": 17,
+        "flags": 0,
+        "entropy": 0.10713825076403297,
+        "rate_hz": 4739.392763180843,
+        "burst_prob": 0.7,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "ExfiltraxDNS_Tunn_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 495,
+        "bytes_out": 256,
+        "port_dst": 443,
+        "protocol": 17,
+        "flags": 0,
+        "entropy": 0.9450895817034102,
+        "rate_hz": 57.92045452399751,
+        "burst_prob": 0.1,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "ExfiltraxDNS_Tunn_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 200,
+        "bytes_out": 120,
+        "port_dst": 443,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.88,
+        "rate_hz": 8,
+        "burst_prob": 0.1,
+        "jitter": 0.3
+      }
+    },
+    {
+      "name": "PortScanxDoS_SYN__g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.05,
+        "rate_hz": 400,
+        "burst_prob": 0.3,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "DoS_UDP_xBruteFor_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 130,
+        "bytes_out": 0,
+        "port_dst": 0,
+        "protocol": 17,
+        "flags": 24,
+        "entropy": 0.4339375585096774,
+        "rate_hz": 5339.106973578068,
+        "burst_prob": 0.2,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "PortScanxSlowLori_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 63,
+        "bytes_out": 40,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.021822454812178253,
+        "rate_hz": 385.55404088899985,
+        "burst_prob": 0.3,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "PortScanxPortScan_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.05,
+        "rate_hz": 400,
+        "burst_prob": 0.3,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "PortScanxPortScan_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 61,
+        "bytes_out": 0,
+        "port_dst": -1,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.020366879329279126,
+        "rate_hz": 392.6811349157407,
+        "burst_prob": 0.3,
+        "jitter": 0.1
+      }
+    },
+    {
+      "name": "BruteForxDoS_UDP__g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 120,
+        "bytes_out": 80,
+        "port_dst": 22,
+        "protocol": 17,
+        "flags": 0,
+        "entropy": 0.1,
+        "rate_hz": 250,
+        "burst_prob": 0.7,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "BruteForce_SSH_g1_g2",
+      "generation": 2,
       "sent": 0,
       "blocked": 0,
       "evaded": 0,
       "evasion_rate": 0.5,
       "params": {
         "bytes_in": 119,
-        "bytes_out": 120,
-        "port_dst": -1,
+        "bytes_out": 80,
+        "port_dst": 22,
         "protocol": 6,
         "flags": 24,
-        "entropy": 0.019304172661979372,
-        "rate_hz": 405.92009248503496,
+        "entropy": 0.42714498521964794,
+        "rate_hz": 275.9972799586834,
+        "burst_prob": 0.2,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "PortScanxBruteFor_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 40,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.05,
+        "rate_hz": 2.0453085224002354,
+        "burst_prob": 0.2,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "DoS_UDP_xDoS_UDP__g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 1400,
+        "bytes_out": 0,
+        "port_dst": 0,
+        "protocol": 17,
+        "flags": 0,
+        "entropy": 0.1,
+        "rate_hz": 6000,
+        "burst_prob": 0.7,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "PortScanxBruteFor_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.05,
+        "rate_hz": 400,
         "burst_prob": 0.3,
-        "jitter": 0.1
+        "jitter": 0.15
       }
     },
     {
-      "name": "PortScanxPortScan_g16_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
+      "name": "BruteForce_SSH",
+      "generation": 0,
+      "sent": 3,
+      "blocked": 1,
       "evaded": 0,
-      "evasion_rate": 0.5,
+      "evasion_rate": 0.0,
       "params": {
-        "bytes_in": 132,
-        "bytes_out": 120,
-        "port_dst": -1,
+        "bytes_in": 120,
+        "bytes_out": 80,
+        "port_dst": 22,
         "protocol": 6,
         "flags": 24,
-        "entropy": 0.02,
-        "rate_hz": 400,
+        "entropy": 0.45,
+        "rate_hz": 250,
         "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g16_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 132,
-        "bytes_out": 120,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.02,
-        "rate_hz": 400,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g35_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 130,
-        "bytes_out": 0,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.020105343451613005,
-        "rate_hz": 285.78522576772343,
-        "burst_prob": 0.2,
-        "jitter": 0.4
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g35_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 133,
-        "bytes_out": 0,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.019166815558387888,
-        "rate_hz": 400,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 130,
-        "bytes_out": 0,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.02,
-        "rate_hz": 399.8128816725107,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g35_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 122,
-        "bytes_out": 0,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 2,
-        "entropy": 0.01982689037140254,
-        "rate_hz": 477.55292426405606,
-        "burst_prob": 0.2,
-        "jitter": 0.4
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g35_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 125,
-        "bytes_out": 0,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 2,
-        "entropy": 0.022051529547491188,
-        "rate_hz": 540.3932905764635,
-        "burst_prob": 0.2,
-        "jitter": 0.4
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g16_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 132,
-        "bytes_out": 120,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.02,
-        "rate_hz": 400,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g35_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 133,
-        "bytes_out": 0,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.019166815558387888,
-        "rate_hz": 400,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 132,
-        "bytes_out": 0,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.02,
-        "rate_hz": 400,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g16_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 132,
-        "bytes_out": 120,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.02,
-        "rate_hz": 400,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g35_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 132,
-        "bytes_out": 120,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 2,
-        "entropy": 0.02,
-        "rate_hz": 400,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 128,
-        "bytes_out": 120,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.021962102340801346,
-        "rate_hz": 455.1794256248496,
-        "burst_prob": 0.2,
-        "jitter": 0.1
-      }
-    },
-    {
-      "name": "PortScanxC2_Beaco_g7_g8_g9_g36",
-      "generation": 36,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 132,
-        "bytes_out": 120,
-        "port_dst": -1,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.02005185736733605,
-        "rate_hz": 285.78522576772343,
-        "burst_prob": 0.2,
-        "jitter": 0.4
+        "jitter": 0.25
       }
     }
   ],
   "db_stats": {
-    "total": 2564,
+    "total": 1806,
     "top_label": "FileSystemAnomaly/Ransomware",
-    "avg_confidence": 0.1877,
-    "threat_count": 6,
+    "avg_confidence": 0.2598,
+    "threat_count": 21,
     "top_class": "FileSystemAnomaly/Ransomware",
     "class_counts": {
-      "UnknownHighSeverity": 115,
+      "UnknownHighSeverity": 37,
       "LateralMovement/Persistence": 2,
       "BruteForce/CredentialStuffing": 233,
-      "DoS/DDoS": 246,
-      "PortScan": 11,
+      "DoS/DDoS": 227,
+      "PortScan": 6,
       "EncryptedC2/Exfiltration": 51,
-      "UnknownLowSeverity": 16,
+      "UnknownLowSeverity": 11,
       "FileSystemAnomaly/Ransomware": 430,
       "suspicious": 300,
       "malicious": 299,
       "unknown": 200,
-      "DNSTunnel": 16
+      "DNSTunnel": 2
     }
   }
 }
