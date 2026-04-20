@@ -18,13 +18,17 @@ SIG_FILE = os.path.join(DB_DIR, "ids_signatures.jsonl")
 EMBEDDING_DIM = 64
 
 # WritePolicy thresholds (ids_types.hpp WritePolicy)
-# ✓ FIX: Lowered thresholds to capture more learning data
-# BEFORE: 0.40/0.70 (too high, missing learning opportunities)
-# NOW: 0.10/0.40 (captures all patterns for training)
-# REASON: Synthetic attacks have low anomaly scores (0.18-0.20); need to write everything
-# to build training data. Once trained, can raise thresholds.
-MEMORY_WRITE_GATE  = 0.10   # write ip/user/session (very low for training)
-MEMORY_FORCE_GATE  = 0.40   # also write global (lowered)
+# EVASION-FIRST STRATEGY: Store evasion data with HIGH priority
+# Evasion records (Escalate + low confidence) are MOST important for learning
+# REASON: Mutation predictor learns from evasions to predict next mutations
+# 
+# Write gates:
+# - Evasion (Escalate + any confidence) → Store immediately (HIGH priority)
+# - Blocked (Block + confidence >= 0.35) → Store normally
+# - Noise (Ignore + confidence < 0.35) → Drop
+MEMORY_WRITE_GATE  = 0.35   # write ip/user/session (blocked records)
+EVASION_WRITE_GATE = 0.0    # write ALL evasion attempts (even low confidence)
+MEMORY_FORCE_GATE  = 0.65   # also write global (only very high-confidence)
 DRIFT_WRITE_THRESH = 8.0
 
 # Retrieval weights (ids_memory.hpp VectorStore.search)
@@ -58,7 +62,7 @@ class ThreatRecord:
         "anomaly_trend", "entropy", "rate_hz",
         "port_dst", "protocol", "flags",
         "explanation", "timestamp", "frame_id",
-        "inserted_at", "_norm",
+        "inserted_at", "_norm", "metadata",
     ]
 
     def __init__(self, **kw):
@@ -66,6 +70,8 @@ class ThreatRecord:
             setattr(self, k, kw.get(k))
         if self.inserted_at is None:
             self.inserted_at = time.monotonic()
+        if self.metadata is None:
+            self.metadata = {}
         # _norm kept for backward compat but VectorStore no longer uses it per-record
         emb = self.embedding
         self._norm = math.sqrt(sum(x * x for x in emb) + 1e-9) if emb else 1.0
@@ -238,17 +244,29 @@ class PartitionedMemoryStore:
               drift_score: float = 0.0, decision: str = "Ignore",
               matched_rules: list = None):
         """
-        Write gating mirrors ids_memory.hpp should_write() + write_record().
+        Write gating with EVASION-FIRST strategy.
+        Evasion records (Escalate) are stored with HIGH priority for mutation predictor learning.
         """
         matched_rules = matched_rules or []
+        
+        # EVASION-FIRST: Escalate decisions are ALWAYS stored (even low confidence)
+        is_evasion = decision == "Escalate"
+        
         force  = anomaly_score >= MEMORY_FORCE_GATE
         normal = anomaly_score >= MEMORY_WRITE_GATE
         on_block    = decision in ("Block", "Escalate")
         on_rule     = bool(matched_rules)
         on_drift    = drift_score >= DRIFT_WRITE_THRESH
 
-        if not (force or normal or on_block or on_rule or on_drift):
+        # Write if: evasion OR (force OR normal OR on_block OR on_rule OR on_drift)
+        if not (is_evasion or force or normal or on_block or on_rule or on_drift):
             return False
+
+        # Tag evasion records for mutation predictor
+        if is_evasion:
+            rec.metadata = rec.metadata or {}
+            rec.metadata["evasion_attempt"] = True
+            rec.metadata["evasion_priority"] = "HIGH"
 
         src = rec.source or ""
         # Always write to ip scope

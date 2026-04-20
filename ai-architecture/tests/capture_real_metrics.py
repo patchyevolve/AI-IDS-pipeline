@@ -8,9 +8,14 @@ It shows the REAL performance of the IDS against actual attacks.
 """
 import sys
 import os
+import io
 import time
 import threading
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
+# Fix Windows console encoding issues
+if sys.platform == "win32":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 from event_bus import EventBus
 from cnn.cnn_engine import CNNEngine
@@ -37,7 +42,7 @@ def run_with_validation(duration_seconds=60):
     db = DatabaseEngine(bus)
     cnn = CNNEngine(bus)
     rnn = RNNEngine(bus)
-    base_decoder = HybridDecoder(db)
+    base_decoder = HybridDecoder(bus)
     decoder = MutationAwareDecoder(base_decoder, db)
     validator = TrainingValidator(bus, db=db)
     

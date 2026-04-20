@@ -116,56 +116,90 @@ class TrainingValidator:
     def _correct_false_negative(self, event: dict):
         """Correct FN: attack was missed, add to DB with high confidence."""
         try:
-            rec = ThreatRecord(
-                embedding=event.get("feature_vector", [0.9] * 64),
-                source=event.get("source", "unknown"),
-                destination=event.get("destination", "unknown"),
-                attack_class=event.get("attack_class", "UnknownHighSeverity"),
-                decision="Block",  # Correct decision: block this attack
-                confidence=0.95,   # High confidence
-                anomaly_trend=0.85,
-                entropy=0.85,
-                rate_hz=event.get("rate_hz", 500.0),
-                port_dst=event.get("port_dst", 0),
-                protocol=event.get("protocol", 6),
-                flags=event.get("flags", 0),
-                explanation=f"[FN-CORRECTION] Was incorrectly {event.get('decision')} - now marked as {event.get('attack_class')}",
-                timestamp=event.get("timestamp", datetime.now().isoformat()),
-                frame_id=event.get("frame_id", -1),
-            )
-            self.db.memory.global_store.insert(rec)
-            self.db.memory.ip_store[rec.source].insert(rec)
+            # Create correction record
+            correction_event = {
+                "feature_vector": event.get("feature_vector", [0.9] * 64),
+                "source": event.get("source", "unknown"),
+                "destination": event.get("destination", "unknown"),
+                "attack_class": event.get("attack_class", "UnknownHighSeverity"),
+                "decision": "Block",  # Correct decision: block this attack
+                "confidence": 0.95,   # High confidence
+                "anomaly_trend": 0.85,
+                "entropy": event.get("entropy", 0.85),
+                "rate_hz": event.get("rate_hz", 500.0),
+                "port_dst": event.get("port_dst", 0),
+                "protocol": event.get("protocol", 6),
+                "flags": event.get("flags", 0),
+                "explanation": f"[FN-CORRECTION] Was incorrectly {event.get('decision')} - now marked as {event.get('attack_class')}",
+                "timestamp": event.get("timestamp", datetime.now().isoformat()),
+                "frame_id": event.get("frame_id", -1),
+            }
+            
+            # Use db.log_prediction to properly store the correction
+            # This ensures it goes through write gates, gets exported, and is tracked
+            self.db.log_prediction(correction_event)
+            
+            # ✓ CRITICAL: Export to disk IMMEDIATELY (not wait 5 min)
+            # This ensures the corrected signature is available to the decoder
+            exported = self.db.export_ids_signatures()
+            
+            # ✓ CRITICAL: Reload mutation predictor with new patterns
+            # This allows the decoder to learn from the FN correction immediately
+            if hasattr(self.db, 'event_bus'):
+                self.db.event_bus.emit("db_updated", {
+                    "type": "fn_correction",
+                    "attack_class": event.get("attack_class"),
+                    "exported_count": exported,
+                })
+            
             self.corrections_made += 1
             self.fn_corrections += 1
-            print(f"[VALIDATOR] FN-CORRECTION: Added {event.get('attack_class')} to DB (was missed)")
+            print(f"[VALIDATOR] FN-CORRECTION: Added {event.get('attack_class')} to DB (was missed, confidence=0.95, exported={exported})")
         except Exception as e:
             print(f"[VALIDATOR] FN correction error: {e}")
     
     def _correct_false_positive(self, event: dict):
-        """Correct FP: benign was blocked, add to DB with low confidence."""
+        """Correct FP: benign was blocked, add to DB with high confidence."""
         try:
-            rec = ThreatRecord(
-                embedding=event.get("feature_vector", [0.1] * 64),
-                source=event.get("source", "unknown"),
-                destination=event.get("destination", "unknown"),
-                attack_class="benign",
-                decision="Ignore",  # Correct decision: allow this traffic
-                confidence=0.95,    # High confidence it's benign
-                anomaly_trend=0.05,
-                entropy=0.3,
-                rate_hz=event.get("rate_hz", 100.0),
-                port_dst=event.get("port_dst", 0),
-                protocol=event.get("protocol", 6),
-                flags=event.get("flags", 0),
-                explanation=f"[FP-CORRECTION] Was incorrectly {event.get('decision')} - now marked as benign",
-                timestamp=event.get("timestamp", datetime.now().isoformat()),
-                frame_id=event.get("frame_id", -1),
-            )
-            self.db.memory.global_store.insert(rec)
-            self.db.memory.ip_store[rec.source].insert(rec)
+            # Create correction record
+            correction_event = {
+                "feature_vector": event.get("feature_vector", [0.1] * 64),
+                "source": event.get("source", "unknown"),
+                "destination": event.get("destination", "unknown"),
+                "attack_class": "benign",
+                "decision": "Ignore",  # Correct decision: allow this traffic
+                "confidence": 0.95,    # High confidence it's benign
+                "anomaly_trend": 0.05,
+                "entropy": event.get("entropy", 0.3),
+                "rate_hz": event.get("rate_hz", 100.0),
+                "port_dst": event.get("port_dst", 0),
+                "protocol": event.get("protocol", 6),
+                "flags": event.get("flags", 0),
+                "explanation": f"[FP-CORRECTION] Was incorrectly {event.get('decision')} - now marked as benign",
+                "timestamp": event.get("timestamp", datetime.now().isoformat()),
+                "frame_id": event.get("frame_id", -1),
+            }
+            
+            # Use db.log_prediction to properly store the correction
+            # This ensures it goes through write gates, gets exported, and is tracked
+            self.db.log_prediction(correction_event)
+            
+            # ✓ CRITICAL: Export to disk IMMEDIATELY (not wait 5 min)
+            # This ensures the corrected signature is available to the decoder
+            exported = self.db.export_ids_signatures()
+            
+            # ✓ CRITICAL: Reload mutation predictor with new patterns
+            # This allows the decoder to learn from the FP correction immediately
+            if hasattr(self.db, 'event_bus'):
+                self.db.event_bus.emit("db_updated", {
+                    "type": "fp_correction",
+                    "attack_class": "benign",
+                    "exported_count": exported,
+                })
+            
             self.corrections_made += 1
             self.fp_corrections += 1
-            print(f"[VALIDATOR] FP-CORRECTION: Added benign traffic to DB (was blocked)")
+            print(f"[VALIDATOR] FP-CORRECTION: Added benign traffic to DB (was blocked, confidence=0.95, exported={exported})")
         except Exception as e:
             print(f"[VALIDATOR] FP correction error: {e}")
     

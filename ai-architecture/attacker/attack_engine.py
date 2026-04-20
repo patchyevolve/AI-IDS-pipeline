@@ -192,6 +192,7 @@ class AttackEngine:
     # Capture decoder decision
     def _on_decoder_output(self, data: dict):
         decision = data.get("decision", "Ignore")
+        predicted = data.get("predicted", False)  # Check if evasion was predicted
 
         # Match via the unique atk_tag embedded in metadata
         atk_tag = (data.get("metadata") or {}).get("atk_tag")
@@ -207,15 +208,22 @@ class AttackEngine:
             return   # already handled or unknown tag
 
         # ✓ FIX 5: Log feedback reception
-        self.on_status(f"[attacker] feedback: {profile_name} → {decision}")
+        if predicted and decision in ("Block", "Alert"):
+            self.on_status(f"[attacker] feedback: {profile_name} → {decision} [PREDICTED EVASION]")
+        else:
+            self.on_status(f"[attacker] feedback: {profile_name} → {decision}")
 
-        self.mutator.record_outcome(profile_name, decision)
+        # Pass predicted flag to mutator
+        self.mutator.record_outcome(profile_name, decision, predicted=predicted)
 
         # ✓ FIX 5: Log fitness update
         profile = next((p for p in self.mutator.population if p.name == profile_name), None)
         if profile:
+            fitness_str = f"{profile.fitness:.3f}"
+            if predicted:
+                fitness_str += " [PREDICTED]"
             self.on_status(
-                f"[attacker] fitness: {profile_name} = {profile.fitness:.3f} "
+                f"[attacker] fitness: {profile_name} = {fitness_str} "
                 f"(sent={profile.sent}, evaded={profile.evaded}, blocked={profile.blocked})"
             )
 

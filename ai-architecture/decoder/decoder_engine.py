@@ -382,6 +382,13 @@ class HybridDecoder:
         self.correlation = CorrelationEngine()
         self.decision_eng= DecisionEngine()
         self.meta_coordinator = MetaLearningCoordinator()
+        
+        # Initialize threat intelligence engine
+        try:
+            from threat_intelligence import ThreatIntelligenceEngine
+            self.ti_engine = ThreatIntelligenceEngine()
+        except ImportError:
+            self.ti_engine = None
 
     def decode(self, cnn_event: dict, rnn_event: dict, db_memory: list = None,
                metadata: dict = None) -> dict:
@@ -449,27 +456,47 @@ class HybridDecoder:
         # Boost the fused score dynamically if it's a known attack class from Tri-Model
         cnn_is_attack = cnn_event.get("is_attack_prob", 0.0) > 0.5
 
-        # ✓ FIX 3: Use database context for better decisions
-        # REASON: Database full of low-confidence noise → filter to high-quality records only
-        # Only use records with BOTH high similarity AND high confidence
+        # ✓ FIX: Use corrected signatures (confidence=0.95) from validator to boost decisions
+        # REASON: Validator stores FN/FP corrections with high confidence (0.95)
+        # These should directly boost the fused score to improve accuracy
         db_boost = 0.0
         db_decision_override = None
         if db_memory:
-            # Filter: similarity > 0.85 AND confidence > 0.60 (high-quality matches only)
-            high_quality = [r for r in db_memory 
-                           if r.get("similarity", 0.0) > 0.85 and r.get("confidence", 0.0) > 0.60]
-            if high_quality:
-                best_match = high_quality[0]
-                db_boost = 0.20  # Stronger boost for high-quality matches
-                # If similarity is very high AND confidence is high, use the known decision
-                if best_match.get("similarity", 0.0) > 0.92 and best_match.get("confidence", 0.0) > 0.75:
-                    db_decision_override = best_match.get("decision", None)
+            # Find corrected signatures: high confidence (>0.85) indicates validator correction
+            corrected_sigs = [r for r in db_memory 
+                             if r.get("confidence", 0.0) > 0.85]
+            
+            if corrected_sigs:
+                # Use the best corrected signature
+                best_corrected = corrected_sigs[0]
+                corrected_conf = best_corrected.get("confidence", 0.0)
+                corrected_decision = best_corrected.get("decision", None)
+                
+                # Boost based on how confident the correction is
+                # confidence=0.95 → boost=0.30, confidence=0.90 → boost=0.25, etc.
+                db_boost = (corrected_conf - 0.60) * 0.5  # Maps 0.85→0.125, 0.95→0.175
+                
+                # If corrected signature is very confident (>0.90), use its decision directly
+                if corrected_conf > 0.90 and corrected_decision in DECISIONS:
+                    db_decision_override = corrected_decision
+            
+            # Also check for high-similarity matches (even if not corrected)
+            # These provide additional context but don't override decisions
+            high_sim_matches = [r for r in db_memory 
+                               if r.get("similarity", 0.0) > 0.90 and r.get("confidence", 0.0) > 0.60]
+            if high_sim_matches and not db_decision_override:
+                # Add extra boost for high-similarity matches
+                db_boost += 0.10
 
         fused = (W_LOCAL    * local_score   +
                  W_SEGMENT  * segment_trend +
                  W_HISTORY  * anomaly_hist  +
                  W_DRIFT    * drift_norm    +
-                 retrieval_boost + rule_boost + meta_fused + db_boost) / 2.0
+                 retrieval_boost + rule_boost + meta_fused) / 2.0
+        
+        # Apply database boost AFTER base fusion
+        # This ensures corrected signatures (confidence=0.95) directly improve decisions
+        fused = fused + db_boost
                  
         if cnn_is_attack:
             fused = max(fused, cnn_event.get("is_attack_prob", 0.0) + retrieval_boost)
@@ -562,6 +589,43 @@ class HybridDecoder:
             "timestamp": datetime.now().isoformat(),
             "metadata":  _metadata,
         }
+        
+        # Process through threat intelligence engine
+        if self.ti_engine and decision != "none":
+            try:
+                attack_data = {
+                    "source_ip": cnn_event.get("source", ""),
+                    "destination_ip": cnn_event.get("destination", ""),
+                    "attack_class": decision,
+                    "severity": fused * 10,  # Scale to 0-10
+                    "timestamp": datetime.now().timestamp(),
+                    "protocol": cnn_event.get("protocol", 0),
+                    "port_dst": cnn_event.get("port_dst", 0),
+                    "entropy": cnn_event.get("entropy", 0),
+                    "bytes_in": cnn_event.get("bytes_in", 0),
+                    "bytes_out": cnn_event.get("bytes_out", 0),
+                    "rate_hz": cnn_event.get("rate_hz", 0)
+                }
+                
+                intelligence = self.ti_engine.process_attack(attack_data)
+                
+                # Enhance decision with threat intelligence
+                decode_event["threat_level"] = intelligence.get("threat_level")
+                decode_event["recommendations"] = intelligence.get("recommendations", [])
+                decode_event["campaign_id"] = intelligence["campaign_correlation"].get("campaign_id")
+                decode_event["threat_actor"] = intelligence["campaign_correlation"].get("threat_actor")
+                decode_event["mitre_tactics"] = [t["name"] for t in intelligence.get("mitre_mapping", {}).get("tactics", [])]
+                decode_event["mitre_techniques"] = [t["id"] for t in intelligence.get("mitre_mapping", {}).get("techniques", [])]
+                decode_event["behavioral_anomalies"] = intelligence.get("behavioral_analysis", {}).get("ip_anomalies", [])
+                
+                # Escalate if critical
+                if intelligence.get("threat_level") == "CRITICAL":
+                    decode_event["decision"] = "Block"
+                    decode_event["escalate"] = True
+                    
+            except Exception as e:
+                print(f"[TI] Error processing threat intelligence: {e}")
+        
         self.event_bus.emit("decoder_output", decode_event)
         return decode_event
 

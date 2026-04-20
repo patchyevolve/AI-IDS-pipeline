@@ -11,6 +11,7 @@ Strategy:
 This allows IDS to think ahead: "If this is a DoS, what mutations might come next?"
 """
 import math
+import time
 import numpy as np
 from collections import defaultdict
 
@@ -66,11 +67,36 @@ class MutationPredictor:
     def learn_from_database(self, db_records: list):
         """
         Analyze database records to learn mutation patterns.
+        PRIORITIZE evasion records (marked with evasion_attempt=True).
         """
+        # Separate evasion records from blocked records
+        evasion_records = []
+        blocked_records = []
+        
         for rec in db_records:
+            metadata = rec.get("metadata", {})
+            if metadata.get("evasion_attempt"):
+                evasion_records.append(rec)
+            else:
+                blocked_records.append(rec)
+        
+        # Learn from evasions FIRST (they're most important)
+        for rec in evasion_records:
             attack_class = rec.get("attack_class", "none")
             if attack_class and attack_class != "none":
                 self.threat_patterns[attack_class].append(rec)
+        
+        # Then learn from blocked records
+        for rec in blocked_records:
+            attack_class = rec.get("attack_class", "none")
+            if attack_class and attack_class != "none":
+                self.threat_patterns[attack_class].append(rec)
+        
+        # Log what we learned
+        total_evasions = len(evasion_records)
+        total_blocked = len(blocked_records)
+        if total_evasions > 0:
+            print(f"[mutation-predictor] Learned from {total_evasions} EVASION records + {total_blocked} blocked records")
     
     def predict_mutations(self, current_event: dict, attack_class: str, k: int = 5) -> list:
         """
@@ -253,6 +279,11 @@ class MutationAwareDecoder:
         self._last_db_sync = 0
         self._sync_interval = 300  # Sync every 5 minutes
         
+        # ✓ CRITICAL FIX: Subscribe to db_updated events for real-time pattern reload
+        # When validator corrects FN/FP, it emits db_updated → we reload patterns immediately
+        if hasattr(db_engine, 'event_bus'):
+            db_engine.event_bus.subscribe("db_updated", self._on_db_updated)
+        
     def decode_with_mutation_awareness(self, cnn_event: dict, rnn_event: dict, 
                                        db_memory: list = None, metadata: dict = None) -> dict:
         """
@@ -297,20 +328,54 @@ class MutationAwareDecoder:
         if mutation_scores["predicted_mutation_detected"]:
             max_score = mutation_scores["max_mutation_score"]
             
-            # If mutation match is high, upgrade decision
+            # If mutation match is high, upgrade decision AND boost confidence
             if max_score > 0.7:
                 if base_decision["decision"] in ("Ignore", "Log"):
                     base_decision["decision"] = "Alert"
+                    base_decision["confidence"] = max(base_decision["confidence"], 0.75)
                     base_decision["explanation"] += f" [MUTATION PREDICTED: {max_score:.2f}]"
                 elif base_decision["decision"] == "Alert":
                     base_decision["decision"] = "Block"
+                    base_decision["confidence"] = max(base_decision["confidence"], 0.85)
                     base_decision["explanation"] += f" [MUTATION PREDICTED: {max_score:.2f}]"
+                elif base_decision["decision"] == "Escalate":
+                    # Escalate → Block (we predicted this evasion!)
+                    base_decision["decision"] = "Block"
+                    base_decision["confidence"] = max(base_decision["confidence"], 0.80)
+                    base_decision["explanation"] += f" [EVASION PREDICTED: {max_score:.2f}]"
             elif max_score > 0.5:
                 if base_decision["decision"] == "Ignore":
                     base_decision["decision"] = "Log"
+                    base_decision["confidence"] = max(base_decision["confidence"], 0.55)
                     base_decision["explanation"] += f" [MUTATION LIKELY: {max_score:.2f}]"
+                elif base_decision["decision"] == "Escalate":
+                    # Escalate → Alert (we predicted this evasion!)
+                    base_decision["decision"] = "Alert"
+                    base_decision["confidence"] = max(base_decision["confidence"], 0.65)
+                    base_decision["explanation"] += f" [EVASION LIKELY: {max_score:.2f}]"
         
         return base_decision
+    
+    def _on_db_updated(self, event: dict):
+        """
+        Event handler for db_updated events.
+        Called when validator corrects FN/FP and exports new signatures.
+        Reloads mutation predictor patterns immediately (not waiting 5 minutes).
+        """
+        try:
+            event_type = event.get("type", "")
+            attack_class = event.get("attack_class", "")
+            exported_count = event.get("exported_count", 0)
+            
+            print(f"[mutation-predictor] db_updated event: type={event_type}, class={attack_class}, exported={exported_count}")
+            
+            # Reload patterns immediately
+            self._sync_database_patterns()
+            self._last_db_sync = time.time()
+            
+            print(f"[mutation-predictor] Patterns reloaded immediately after {event_type}")
+        except Exception as e:
+            print(f"[mutation-predictor] db_updated handler error: {e}")
     
     def _sync_database_patterns(self):
         """

@@ -1,59 +1,75 @@
 {
-  "session_start": "2026-04-20T16:04:04.072213",
-  "total_events": 80,
-  "true_positives": 0,
+  "session_start": "2026-04-21T01:28:43.831717",
+  "total_events": 1640,
+  "true_positives": 470,
   "true_negatives": 0,
   "false_positives": 0,
-  "false_negatives": 80,
+  "false_negatives": 1170,
   "by_class": {
     "EncryptedC2/Exfiltration": {
-      "tp": 0,
+      "tp": 18,
       "tn": 0,
       "fp": 0,
-      "fn": 18
-    },
-    "BruteForce/CredentialStuffing": {
-      "tp": 0,
-      "tn": 0,
-      "fp": 0,
-      "fn": 14
-    },
-    "PortScan": {
-      "tp": 0,
-      "tn": 0,
-      "fp": 0,
-      "fn": 22
-    },
-    "DoS/DDoS": {
-      "tp": 0,
-      "tn": 0,
-      "fp": 0,
-      "fn": 18
-    },
-    "LateralMovement/Persistence": {
-      "tp": 0,
-      "tn": 0,
-      "fp": 0,
-      "fn": 4
+      "fn": 48
     },
     "DNSTunnel": {
-      "tp": 0,
+      "tp": 10,
       "tn": 0,
       "fp": 0,
-      "fn": 4
+      "fn": 0
+    },
+    "DoS/DDoS": {
+      "tp": 33,
+      "tn": 0,
+      "fp": 0,
+      "fn": 102
+    },
+    "PortScan": {
+      "tp": 396,
+      "tn": 0,
+      "fp": 0,
+      "fn": 784
+    },
+    "LateralMovement/Persistence": {
+      "tp": 5,
+      "tn": 0,
+      "fp": 0,
+      "fn": 8
+    },
+    "BruteForce/CredentialStuffing": {
+      "tp": 8,
+      "tn": 0,
+      "fp": 0,
+      "fn": 228
     }
   },
   "by_decision": {
+    "Block": {
+      "correct": 86,
+      "incorrect": 0
+    },
+    "Log": {
+      "correct": 0,
+      "incorrect": 1042
+    },
+    "Alert": {
+      "correct": 8,
+      "incorrect": 0
+    },
+    "Escalate": {
+      "correct": 376,
+      "incorrect": 0
+    },
     "Ignore": {
       "correct": 0,
-      "incorrect": 80
+      "incorrect": 128
     }
   },
-  "accuracy": 0.0,
-  "precision": 0,
-  "recall": 0.0,
-  "f1_score": 0,
+  "accuracy": 0.2866,
+  "precision": 1.0,
+  "recall": 0.2866,
+  "f1_score": 0.4455,
   "fpr": 0,
-  "fnr": 1.0,
-  "session_end": "2026-04-20T16:05:06.594127"
+  "fnr": 0.7134,
+  "session_end": "2026-04-21T01:46:45.824632"
 }

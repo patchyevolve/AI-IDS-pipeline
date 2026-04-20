@@ -1,29 +1,70 @@
 {
-  "timestamp": "2026-04-20T15:47:45.863941",
+  "timestamp": "2026-04-20T19:36:32.099645",
   "duration": 60,
   "attacker_stats": {
-    "total_sent": 599,
-    "total_blocked": 0,
-    "total_evaded": 0,
-    "total_alerted": 0,
+    "total_sent": 594,
+    "total_blocked": 1,
+    "total_evaded": 1,
+    "total_alerted": 1,
     "generation": 11,
     "active_targets": [
-      "10.124.47.203",
-      "10.124.47.229",
-      "10.124.47.102",
-      "10.124.47.99",
-      "10.124.47.155",
-      "10.124.47.137"
+      "10.124.47.131",
+      "10.124.47.251",
+      "10.124.47.70",
+      "10.124.47.90",
+      "10.124.47.234",
+      "10.124.47.28"
     ],
-    "top_profile": "\u2014",
-    "last_decision": "\u2014",
-    "last_target": "10.124.47.99",
-    "last_profile": "DoS_SYN_xDoS_SYN__g11"
+    "top_profile": "DoS_SYN_Flood",
+    "last_decision": "Log",
+    "last_target": "10.124.47.251",
+    "last_profile": "BruteForxDoS_UDP__g10_g11"
   },
-  "validation_metrics": null,
+  "validation_metrics": {
+    "session_start": "2026-04-20T19:35:32.040057",
+    "total_events": 6,
+    "true_positives": 4,
+    "true_negatives": 0,
+    "false_positives": 0,
+    "false_negatives": 2,
+    "by_class": {
+      "DoS/DDoS": {
+        "tp": 4,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "PortScan": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 2
+      }
+    },
+    "by_decision": {
+      "Alert": {
+        "correct": 2,
+        "incorrect": 0
+      },
+      "Block": {
+        "correct": 2,
+        "incorrect": 0
+      },
+      "Log": {
+        "correct": 0,
+        "incorrect": 2
+      }
+    },
+    "accuracy": 0.6667,
+    "precision": 1.0,
+    "recall": 0.6667,
+    "f1_score": 0.8,
+    "fpr": 0,
+    "fnr": 0.3333
+  },
   "corrections": {
-    "total": 0,
-    "fn": 0,
+    "total": 2,
+    "fn": 2,
     "fp": 0
   }
 }

@@ -25,55 +25,63 @@ class ProfileFitness:
         self.evaded      = 0
         self.alerted     = 0
         self.generation  = 0
+        self.metadata    = {}  # Track predicted evasions
 
     @property
     def evasion_rate(self) -> float:
         """
-        ✓ FIX: Evasion rate should only count true evasions (not Alert/Log/Ignore)
-        Only Block/Escalate count as failures.
+        True evasion rate (not blocked and not alerted).
         """
         if self.sent == 0:
             return 0.5
-        # True evasion = not blocked and not alerted
         true_evasions = self.sent - self.blocked - self.alerted
         return true_evasions / self.sent
 
     @property
     def fitness(self) -> float:
         """
-        Higher = better at evading.
-        ✓ FIX: Proper fitness scoring
-        - Block/Escalate = 0.0 (worst - detected)
-        - Alert = 0.3 (medium - detected but not blocked)
-        - Log/Ignore = 0.5 (neutral - not detected but not impactful)
-        - Goal: Maximize impact while minimizing detection
+        Fitness scoring with EVASION-FIRST strategy.
+        
+        Hierarchy:
+        - Ignore = 1.0 (true evasion - not detected)
+        - Log = 0.4 (weak evasion - detected but not acted)
+        - Alert = 0.2 (partial evasion - detected but not blocked)
+        - Block/Escalate = 0.0 (failure - detected and blocked)
+        
+        SPECIAL: If evasion was PREDICTED by IDS, fitness = 0.0 (failure)
+        This prevents population from converging to predicted patterns.
         """
         if self.sent < 3:
-            return 0.5  # unknown — neutral
+            return 0.5  # unknown
         
-        # Fitness = (evaded - blocked) / sent
-        # This rewards attacks that evade while penalizing blocks
-        # Log/Ignore don't count as "evaded" anymore
         if self.sent == 0:
             return 0.5
         
-        # Only Block/Escalate count as failures
-        # Alert/Log/Ignore are neutral (not rewarded, not penalized)
-        failures = self.blocked  # Block + Escalate
-        successes = self.sent - failures - self.alerted  # Only true evasions (not Alert)
+        # Check if this profile's evasions were predicted
+        if self.metadata.get("predicted_evasion"):
+            # Predicted evasion = failure (fitness 0.0)
+            # Attacker must find NEW evasion technique
+            return 0.0
         
-        # Fitness = (successes - failures) / sent, clamped to [0, 1]
-        raw_fitness = (successes - failures) / self.sent
-        return max(0.0, min(1.0, raw_fitness))
+        # Normal fitness calculation
+        true_evasions = self.evaded  # Only "Ignore" decisions
+        weak_evasions = self.alerted  # "Alert" decisions
+        blocks = self.blocked  # "Block" + "Escalate"
+        
+        weighted_score = (true_evasions * 1.0 + weak_evasions * 0.2 - blocks * 1.0) / self.sent
+        return max(0.0, min(1.0, weighted_score))
 
     def record_outcome(self, decision: str):
         self.sent += 1
         if decision in ("Block", "Escalate"):
             self.blocked += 1
-        elif decision in ("Ignore", "Log"):
+        elif decision == "Ignore":
             self.evaded += 1
-        else:
+        elif decision in ("Alert", "Log"):
             self.alerted += 1
+        else:
+            # Unknown decision - treat as neutral
+            pass
 
     def to_dict(self) -> dict:
         return {
@@ -106,10 +114,23 @@ class MutationEngine:
         self._gen = 0
 
     # Feed DB outcome back into fitness
-    def record_outcome(self, profile_name: str, decision: str):
+    def record_outcome(self, profile_name: str, decision: str, predicted: bool = False):
+        """
+        Record attack outcome.
+        If predicted=True, attacker's evasion was predicted by IDS (fitness = 0.0).
+        """
         for pf in self.population:
             if pf.name == profile_name:
                 pf.record_outcome(decision)
+                
+                # If IDS predicted this evasion, mark it as "predicted"
+                if predicted and decision == "Escalate":
+                    # Predicted evasion = failure (fitness 0.0)
+                    # Attacker must find NEW evasion technique
+                    pf.metadata = pf.metadata or {}
+                    pf.metadata["predicted_evasion"] = True
+                    print(f"[mutator] {profile_name}: Evasion was PREDICTED by IDS - must evolve differently")
+                
                 return
 
     # Evolve population

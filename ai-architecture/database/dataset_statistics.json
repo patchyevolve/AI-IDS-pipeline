@@ -1,15 +1,16 @@
 {
-  "datasets": 19,
-  "total_rows": 1065651,
-  "total_threats": 495517,
+  "datasets": 21,
+  "total_rows": 1165651,
+  "total_threats": 595517,
   "threat_types": {
-    "": 445517,
+    "": 545517,
     "suspicious": 37322,
     "malicious": 12678
   },
   "protocols": {
     "TCP": 349459,
     "UDP": 110501,
+    "": 100000,
     "ICMP": 12074,
     "HTTPS": 7213,
     "HTTP": 7193,

@@ -39,6 +39,7 @@
 #include <pybind11/chrono.h>
 
 #include "ids.hpp"
+#include "ids_ebpf.hpp"
 
 namespace py = pybind11;
 using namespace ids;
@@ -292,6 +293,70 @@ PYBIND11_MODULE(ids_pipeline, m) {
         })
         .def("rollback_config", &IDS::rollback_config)
         .def("active_campaigns", &IDS::active_campaigns);
+
+    // ── eBPF Structures ─────────────────────────────────────────────────────
+    py::class_<EBPFPacketEvent>(m, "EBPFPacketEvent")
+        .def(py::init<>())
+        .def_readwrite("src_ip",       &EBPFPacketEvent::src_ip)
+        .def_readwrite("dst_ip",       &EBPFPacketEvent::dst_ip)
+        .def_readwrite("src_port",     &EBPFPacketEvent::src_port)
+        .def_readwrite("dst_port",     &EBPFPacketEvent::dst_port)
+        .def_readwrite("protocol",     &EBPFPacketEvent::protocol)
+        .def_readwrite("flags",        &EBPFPacketEvent::flags)
+        .def_readwrite("payload_len",  &EBPFPacketEvent::payload_len)
+        .def_readwrite("timestamp_ns", &EBPFPacketEvent::timestamp_ns)
+        .def_readwrite("action",       &EBPFPacketEvent::action);
+
+    py::class_<EBPFStats>(m, "EBPFStats")
+        .def(py::init<>())
+        .def_readwrite("packets_processed", &EBPFStats::packets_processed)
+        .def_readwrite("packets_blocked",   &EBPFStats::packets_blocked)
+        .def_readwrite("packets_allowed",   &EBPFStats::packets_allowed)
+        .def_readwrite("rate_limited",      &EBPFStats::rate_limited)
+        .def_readwrite("parse_errors",      &EBPFStats::parse_errors)
+        .def("block_rate",  &EBPFStats::block_rate)
+        .def("error_rate",  &EBPFStats::error_rate);
+
+    py::class_<EBPFManager>(m, "EBPFManager")
+        .def(py::init<const std::string&, const std::string&>(),
+             py::arg("interface") = "eth0",
+             py::arg("ebpf_obj_path") = "")
+        .def("initialize", &EBPFManager::initialize)
+        .def("start", [](EBPFManager& mgr, py::object cb) {
+            mgr.start([cb](const EBPFPacketEvent& ev) {
+                py::gil_scoped_acquire gil;
+                cb(ev);
+            });
+        })
+        .def("stop", &EBPFManager::stop)
+        .def("is_running", &EBPFManager::is_running)
+        .def("block_ip", &EBPFManager::block_ip)
+        .def("unblock_ip", &EBPFManager::unblock_ip)
+        .def("get_stats", &EBPFManager::get_stats)
+        .def("get_blocklist_size", &EBPFManager::get_blocklist_size)
+        .def("clear_blocklist", &EBPFManager::clear_blocklist)
+        .def("is_blocked", &EBPFManager::is_blocked);
+
+    py::class_<EBPFAwareIDS>(m, "EBPFAwareIDS")
+        .def(py::init<const std::string&, const std::string&, bool>(),
+             py::arg("interface") = "eth0",
+             py::arg("ebpf_obj_path") = "",
+             py::arg("enabled") = true)
+        .def("initialize", &EBPFAwareIDS::initialize)
+        .def("start", [](EBPFAwareIDS& ids, py::object cb) {
+            ids.start([cb](const EBPFPacketEvent& ev) {
+                py::gil_scoped_acquire gil;
+                cb(ev);
+            });
+        })
+        .def("stop", &EBPFAwareIDS::stop)
+        .def("is_running", &EBPFAwareIDS::is_running)
+        .def("block_ip", &EBPFAwareIDS::block_ip)
+        .def("unblock_ip", &EBPFAwareIDS::unblock_ip)
+        .def("get_stats", &EBPFAwareIDS::get_stats)
+        .def("get_blocklist_size", &EBPFAwareIDS::get_blocklist_size)
+        .def("clear_blocklist", &EBPFAwareIDS::clear_blocklist)
+        .def("is_enabled", &EBPFAwareIDS::is_enabled);
 
     // ── Module-level helpers ─────────────────────────────────────────────────
     m.def("decision_name", [](Decision d) -> std::string {

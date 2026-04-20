@@ -1,0 +1,231 @@
+{
+  "test_duration_s": 300,
+  "start_time": "2026-04-21T02:15:51.139147",
+  "end_time": "2026-04-21T02:20:51.397478",
+  "reports": [
+    {
+      "elapsed_s": 64,
+      "timestamp": "2026-04-21T02:16:55.235386",
+      "validation": {
+        "total_events": 24,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "fpr": 0,
+        "fnr": 0.0,
+        "true_positives": 24,
+        "true_negatives": 0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "attacker": {
+        "total_sent": 75,
+        "total_blocked": 12,
+        "total_evaded": 0,
+        "total_alerted": 0,
+        "generation": 2
+      },
+      "database": {
+        "total_size": 8726,
+        "avg_confidence": 0.4146,
+        "threat_count": 20
+      }
+    },
+    {
+      "elapsed_s": 124,
+      "timestamp": "2026-04-21T02:17:55.316326",
+      "validation": {
+        "total_events": 54,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "fpr": 0,
+        "fnr": 0.0,
+        "true_positives": 54,
+        "true_negatives": 0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "attacker": {
+        "total_sent": 153,
+        "total_blocked": 27,
+        "total_evaded": 0,
+        "total_alerted": 0,
+        "generation": 5
+      },
+      "database": {
+        "total_size": 8751,
+        "avg_confidence": 0.3979,
+        "threat_count": 45
+      }
+    },
+    {
+      "elapsed_s": 184,
+      "timestamp": "2026-04-21T02:18:55.345189",
+      "validation": {
+        "total_events": 76,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "fpr": 0,
+        "fnr": 0.0,
+        "true_positives": 76,
+        "true_negatives": 0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "attacker": {
+        "total_sent": 228,
+        "total_blocked": 38,
+        "total_evaded": 0,
+        "total_alerted": 0,
+        "generation": 7
+      },
+      "database": {
+        "total_size": 8775,
+        "avg_confidence": 0.3882,
+        "threat_count": 69
+      }
+    },
+    {
+      "elapsed_s": 244,
+      "timestamp": "2026-04-21T02:19:55.379025",
+      "validation": {
+        "total_events": 106,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "fpr": 0,
+        "fnr": 0.0,
+        "true_positives": 106,
+        "true_negatives": 0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "attacker": {
+        "total_sent": 300,
+        "total_blocked": 53,
+        "total_evaded": 0,
+        "total_alerted": 0,
+        "generation": 10
+      },
+      "database": {
+        "total_size": 8799,
+        "avg_confidence": 0.3798,
+        "threat_count": 93
+      }
+    }
+  ],
+  "final_metrics": {
+    "validation": {
+      "session_start": "2026-04-21T02:15:55.183327",
+      "total_events": 136,
+      "true_positives": 134,
+      "true_negatives": 0,
+      "false_positives": 0,
+      "false_negatives": 2,
+      "by_class": {
+        "EncryptedC2/Exfiltration": {
+          "tp": 18,
+          "tn": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "DNSTunnel": {
+          "tp": 8,
+          "tn": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "PortScan": {
+          "tp": 12,
+          "tn": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "DoS/DDoS": {
+          "tp": 36,
+          "tn": 0,
+          "fp": 0,
+          "fn": 2
+        },
+        "BruteForce/CredentialStuffing": {
+          "tp": 54,
+          "tn": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "LateralMovement/Persistence": {
+          "tp": 6,
+          "tn": 0,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "by_decision": {
+        "Escalate": {
+          "correct": 106,
+          "incorrect": 0
+        },
+        "Block": {
+          "correct": 28,
+          "incorrect": 0
+        },
+        "Log": {
+          "correct": 0,
+          "incorrect": 2
+        }
+      },
+      "accuracy": 0.9853,
+      "precision": 1.0,
+      "recall": 0.9853,
+      "f1_score": 0.9926,
+      "fpr": 0,
+      "fnr": 0.0147
+    },
+    "attacker": {
+      "total_sent": 369,
+      "total_blocked": 67,
+      "total_evaded": 1,
+      "total_alerted": 0,
+      "generation": 12,
+      "active_targets": [
+        "10.124.47.155",
+        "10.124.47.162",
+        "10.124.47.22",
+        "10.124.47.215",
+        "10.124.47.208",
+        "10.124.47.36"
+      ],
+      "top_profile": "DNS_TunnxBruteFor_g3",
+      "last_decision": "Escalate",
+      "last_target": "10.124.47.22",
+      "last_profile": "BruteForxDNS_Tunn_g10_g11"
+    },
+    "database": {
+      "total": 8825,
+      "top_label": "malicious",
+      "avg_confidence": 0.3806,
+      "threat_count": 116,
+      "top_class": "malicious",
+      "class_counts": {
+        "suspicious": 2253,
+        "malicious": 2277,
+        "DoS/DDoS": 640,
+        "FileSystemAnomaly/Ransomware": 257,
+        "BruteForce/CredentialStuffing": 617,
+        "unknown": 1716,
+        "EncryptedC2/Exfiltration": 159,
+        "PortScan": 66,
+        "LateralMovement/Persistence": 21,
+        "UnknownHighSeverity": 79,
+        "UnknownLowSeverity": 14,
+        "DNSTunnel": 20
+      }
+    }
+  }
+}
