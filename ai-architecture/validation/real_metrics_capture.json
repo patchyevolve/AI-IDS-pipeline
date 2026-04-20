@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-04-20T15:47:45.863941",
+  "duration": 60,
+  "attacker_stats": {
+    "total_sent": 599,
+    "total_blocked": 0,
+    "total_evaded": 0,
+    "total_alerted": 0,
+    "generation": 11,
+    "active_targets": [
+      "10.124.47.203",
+      "10.124.47.229",
+      "10.124.47.102",
+      "10.124.47.99",
+      "10.124.47.155",
+      "10.124.47.137"
+    ],
+    "top_profile": "\u2014",
+    "last_decision": "\u2014",
+    "last_target": "10.124.47.99",
+    "last_profile": "DoS_SYN_xDoS_SYN__g11"
+  },
+  "validation_metrics": null,
+  "corrections": {
+    "total": 0,
+    "fn": 0,
+    "fp": 0
+  }
+}
