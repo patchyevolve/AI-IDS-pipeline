@@ -2376,3 +2376,4 @@
 {"timestamp": "2026-04-20T16:11:54.127970", "is_attack": true, "decision": "Ignore", "attack_class": "DoS/DDoS", "correct": false}
 {"timestamp": "2026-04-20T16:11:56.653103", "is_attack": true, "decision": "Ignore", "attack_class": "DoS/DDoS", "correct": false}
 {"timestamp": "2026-04-20T16:11:57.063496", "is_attack": false, "decision": "Ignore", "attack_class": "benign", "correct": true}
+{"timestamp": "2026-04-20T16:21:51.266682", "is_attack": true, "decision": "Ignore", "attack_class": "DoS/DDoS", "correct": false}
