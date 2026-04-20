@@ -1,0 +1,12 @@
+# AI-IDS Architecture — Python 3.12+
+# Install: pip install -r requirements.txt
+
+pygame>=2.6.0       # HD dashboard (works on Python 3.12)
+psutil>=5.9.0       # interface discovery
+scapy>=2.5.0        # live packet capture (requires Npcap on Windows + run as Admin)
+numpy>=1.26.0       # vectorised CNN/RNN hot path (releases GIL during BLAS ops)
+pybind11>=2.12.0    # C++ extension build (optional — only needed to build cpp/)
+
+# Optional — already in stdlib:
+# tkinter            (fallback dashboard, built into Python)
+# threading, socket, json, math, random, time

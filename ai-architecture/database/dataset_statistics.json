@@ -1,0 +1,21 @@
+{
+  "datasets": 19,
+  "total_rows": 1065651,
+  "total_threats": 495517,
+  "threat_types": {
+    "": 445517,
+    "suspicious": 37322,
+    "malicious": 12678
+  },
+  "protocols": {
+    "TCP": 349459,
+    "UDP": 110501,
+    "ICMP": 12074,
+    "HTTPS": 7213,
+    "HTTP": 7193,
+    "SSH": 5105,
+    "FTP": 3972
+  },
+  "unique_sources": 355,
+  "unique_destinations": 255
+}

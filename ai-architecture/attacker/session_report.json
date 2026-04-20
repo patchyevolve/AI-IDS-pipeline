@@ -1,0 +1,396 @@
+{
+  "session": {
+    "start": "2026-04-20T14:28:50.781908",
+    "end": "2026-04-20T14:29:38.985141",
+    "duration_s": 48.2,
+    "total_sent": 60,
+    "total_blocked": 0,
+    "total_evaded": 0,
+    "total_alerted": 0,
+    "generations": 2
+  },
+  "evaded_profiles": [],
+  "top_evaders": [],
+  "population_final": [
+    {
+      "name": "DoS_SYN_Flood",
+      "generation": 0,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.05,
+        "rate_hz": 8000,
+        "burst_prob": 0.8,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "DoS_UDP_Flood",
+      "generation": 0,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 1400,
+        "bytes_out": 0,
+        "port_dst": 0,
+        "protocol": 17,
+        "flags": 0,
+        "entropy": 0.1,
+        "rate_hz": 6000,
+        "burst_prob": 0.7,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "PortScan_TCP",
+      "generation": 0,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": -1,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.02,
+        "rate_hz": 400,
+        "burst_prob": 0.3,
+        "jitter": 0.1
+      }
+    },
+    {
+      "name": "BruteForce_SSH",
+      "generation": 0,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 120,
+        "bytes_out": 80,
+        "port_dst": 22,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.45,
+        "rate_hz": 250,
+        "burst_prob": 0.2,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "BruteForxExfiltra_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 200,
+        "bytes_out": 80,
+        "port_dst": 443,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.95,
+        "rate_hz": 250,
+        "burst_prob": 0.2,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "ExfiltraxSlowLori_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 200,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.02,
+        "rate_hz": 2.0835463909261835,
+        "burst_prob": 0.4,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "DoS_UDP_Flood_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 1400,
+        "bytes_out": 0,
+        "port_dst": 0,
+        "protocol": 17,
+        "flags": 0,
+        "entropy": 0.1,
+        "rate_hz": 6000,
+        "burst_prob": 0.7,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "BruteForce_SSH_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 126,
+        "bytes_out": 80,
+        "port_dst": 22,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.43357776835147604,
+        "rate_hz": 240.54051743206708,
+        "burst_prob": 0.2,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "LateralMxDoS_SYN__g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 62,
+        "bytes_out": 300,
+        "port_dst": 445,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.5895587770086506,
+        "rate_hz": 50.286474228938935,
+        "burst_prob": 0.15,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "ExfiltraxBruteFor_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 120,
+        "bytes_out": 9000,
+        "port_dst": 22,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.45,
+        "rate_hz": 50,
+        "burst_prob": 0.2,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "DoS_SYN_Flood_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.05,
+        "rate_hz": 8000,
+        "burst_prob": 0.8,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "ExfiltraxLateralM_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 400,
+        "bytes_out": 9000,
+        "port_dst": 445,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.6,
+        "rate_hz": 50,
+        "burst_prob": 0.4,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "C2_Beacon_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 263,
+        "bytes_out": 120,
+        "port_dst": 443,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.8536316556235969,
+        "rate_hz": 7.455395206834325,
+        "burst_prob": 0.05,
+        "jitter": 0.3
+      }
+    },
+    {
+      "name": "LateralMxBruteFor_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 120,
+        "bytes_out": 80,
+        "port_dst": 445,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.45,
+        "rate_hz": 50,
+        "burst_prob": 0.2,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "Exfiltration_HTTPS_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 195,
+        "bytes_out": 9000,
+        "port_dst": 443,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.9326905911483271,
+        "rate_hz": 342.1700379534244,
+        "burst_prob": 0.4,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "DoS_SYN_xExfiltra_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 208,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.05,
+        "rate_hz": 322.1690253472333,
+        "burst_prob": 0.8,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "DoS_UDP_xC2_Beaco_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 242,
+        "bytes_out": 120,
+        "port_dst": 443,
+        "protocol": 6,
+        "flags": 0,
+        "entropy": 0.8330093465570549,
+        "rate_hz": 7.628372528116036,
+        "burst_prob": 0.05,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "ExfiltraxLateralM_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 433,
+        "bytes_out": 9000,
+        "port_dst": 443,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.8583616335966854,
+        "rate_hz": 55.193635328298406,
+        "burst_prob": 0.4,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "PortScanxLateralM_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 445,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.6,
+        "rate_hz": 50,
+        "burst_prob": 0.3,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "DoS_SYN_xSlowLori_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 84,
+        "bytes_out": 40,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.05,
+        "rate_hz": 2.0835463909261835,
+        "burst_prob": 0.8,
+        "jitter": 0.15
+      }
+    }
+  ]
+}
