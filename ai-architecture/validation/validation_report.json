@@ -1,55 +1,75 @@
 {
-  "session_start": "2026-04-20T13:19:33.094716",
-  "total_events": 5,
-  "true_positives": 1,
-  "true_negatives": 1,
-  "false_positives": 1,
-  "false_negatives": 2,
+  "session_start": "2026-04-20T15:10:01.129280",
+  "total_events": 450,
+  "true_positives": 44,
+  "true_negatives": 0,
+  "false_positives": 0,
+  "false_negatives": 406,
   "by_class": {
+    "EncryptedC2/Exfiltration": {
+      "tp": 10,
+      "tn": 0,
+      "fp": 0,
+      "fn": 3
+    },
     "DoS/DDoS": {
+      "tp": 14,
+      "tn": 0,
+      "fp": 0,
+      "fn": 19
+    },
+    "BruteForce/CredentialStuffing": {
+      "tp": 8,
+      "tn": 0,
+      "fp": 0,
+      "fn": 40
+    },
+    "PortScan": {
+      "tp": 9,
+      "tn": 0,
+      "fp": 0,
+      "fn": 343
+    },
+    "LateralMovement/Persistence": {
       "tp": 1,
       "tn": 0,
       "fp": 0,
-      "fn": 0
-    },
-    "benign": {
-      "tp": 0,
-      "tn": 1,
-      "fp": 1,
-      "fn": 0
-    },
-    "PortScan": {
-      "tp": 0,
-      "tn": 0,
-      "fp": 0,
       "fn": 1
     },
-    "BruteForce": {
-      "tp": 0,
+    "DNSTunnel": {
+      "tp": 2,
       "tn": 0,
       "fp": 0,
-      "fn": 1
+      "fn": 0
     }
   },
   "by_decision": {
     "Block": {
-      "correct": 1,
-      "incorrect": 1
+      "correct": 15,
+      "incorrect": 0
     },
-    "Ignore": {
-      "correct": 1,
-      "incorrect": 1
+    "Alert": {
+      "correct": 4,
+      "incorrect": 0
+    },
+    "Escalate": {
+      "correct": 25,
+      "incorrect": 0
     },
     "Log": {
       "correct": 0,
-      "incorrect": 1
+      "incorrect": 394
+    },
+    "Ignore": {
+      "correct": 0,
+      "incorrect": 12
     }
   },
-  "accuracy": 0.4,
-  "precision": 0.5,
-  "recall": 0.3333,
-  "f1_score": 0.4,
-  "fpr": 0.5,
-  "fnr": 0.6667,
-  "session_end": "2026-04-20T13:19:33.115289"
+  "accuracy": 0.0978,
+  "precision": 1.0,
+  "recall": 0.0978,
+  "f1_score": 0.1782,
+  "fpr": 0,
+  "fnr": 0.9022,
+  "session_end": "2026-04-20T15:24:44.127465"
 }
