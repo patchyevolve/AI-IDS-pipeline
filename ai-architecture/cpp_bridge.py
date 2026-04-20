@@ -59,6 +59,15 @@ class CppPipeline:
         self._ids.on_escalate(self._on_cpp_alert)
 
     # ── Main entry point ──────────────────────────────────────────────────────
+    def _sync_signatures_to_cpp(self):
+        """Sync Python DB signatures to C++ memory on startup."""
+        try:
+            # Get all signatures from Python DB
+            sigs = self.db.export_ids_signatures()
+            print(f"[cpp_bridge] Synced {sigs} signatures to C++ memory")
+        except Exception as e:
+            print(f"[cpp_bridge] Sync error: {e}")
+    
     def on_network_event(self, ev: dict):
         """Subscribe this to bus 'network_event' instead of the Python pipeline."""
         self._counter += 1

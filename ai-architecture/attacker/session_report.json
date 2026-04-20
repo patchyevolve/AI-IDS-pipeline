@@ -1,13 +1,90 @@
 {
-  "session_end": "2026-04-20T15:56:25.227688",
-  "total_sent": 76,
-  "total_blocked": 9,
-  "total_evaded": 2,
-  "total_alerted": 4,
+  "session_end": "2026-04-20T16:05:06.474526",
+  "total_sent": 80,
+  "total_blocked": 0,
+  "total_evaded": 80,
+  "total_alerted": 0,
   "generations": 2,
   "evaded_profiles": [
     {
+      "profile": "C2_Beacon",
+      "sent": 3,
+      "blocked": 0,
+      "evaded": 3,
+      "alerted": 0,
+      "classes": {
+        "none": 3
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_RDP",
+      "sent": 6,
+      "blocked": 0,
+      "evaded": 6,
+      "alerted": 0,
+      "classes": {
+        "none": 6
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_SSH",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
       "profile": "PortScan_TCP",
+      "sent": 12,
+      "blocked": 0,
+      "evaded": 12,
+      "alerted": 0,
+      "classes": {
+        "none": 12
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_Flood",
+      "sent": 8,
+      "blocked": 0,
+      "evaded": 8,
+      "alerted": 0,
+      "classes": {
+        "none": 8
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "LateralMovement_SMB",
+      "sent": 3,
+      "blocked": 0,
+      "evaded": 3,
+      "alerted": 0,
+      "classes": {
+        "none": 3
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "Exfiltration_HTTPS",
+      "sent": 12,
+      "blocked": 0,
+      "evaded": 12,
+      "alerted": 0,
+      "classes": {
+        "none": 12
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DNS_Tunnel",
       "sent": 2,
       "blocked": 0,
       "evaded": 2,
@@ -18,103 +95,598 @@
       "evasion_rate": 1.0
     },
     {
-      "profile": "LateralMovement_SMB",
+      "profile": "SlowLoris",
       "sent": 1,
       "blocked": 0,
-      "evaded": 0,
-      "alerted": 1,
+      "evaded": 1,
+      "alerted": 0,
       "classes": {
-        "UnknownHighSeverity": 1
+        "none": 1
       },
-      "evasion_rate": 0.0
+      "evasion_rate": 1.0
     },
     {
       "profile": "DoS_UDP_Flood",
-      "sent": 2,
-      "blocked": 2,
-      "evaded": 0,
-      "alerted": 0,
-      "classes": {
-        "UnknownLowSeverity": 2
-      },
-      "evasion_rate": 0.0
-    },
-    {
-      "profile": "Exfiltration_HTTPS",
-      "sent": 1,
-      "blocked": 1,
-      "evaded": 0,
-      "alerted": 0,
-      "classes": {
-        "UnknownLowSeverity": 1
-      },
-      "evasion_rate": 0.0
-    },
-    {
-      "profile": "BruteForce_SSH",
-      "sent": 3,
-      "blocked": 1,
-      "evaded": 0,
-      "alerted": 2,
-      "classes": {
-        "UnknownHighSeverity": 3
-      },
-      "evasion_rate": 0.0
-    },
-    {
-      "profile": "C2_Beacon",
-      "sent": 2,
-      "blocked": 2,
-      "evaded": 0,
-      "alerted": 0,
-      "classes": {
-        "UnknownLowSeverity": 2
-      },
-      "evasion_rate": 0.0
-    },
-    {
-      "profile": "BruteForce_RDP",
       "sent": 1,
       "blocked": 0,
-      "evaded": 0,
-      "alerted": 1,
-      "classes": {
-        "UnknownHighSeverity": 1
-      },
-      "evasion_rate": 0.0
-    },
-    {
-      "profile": "DNS_Tunnel",
-      "sent": 2,
-      "blocked": 2,
-      "evaded": 0,
+      "evaded": 1,
       "alerted": 0,
       "classes": {
-        "DNSTunnel": 2
+        "none": 1
       },
-      "evasion_rate": 0.0
+      "evasion_rate": 1.0
     },
     {
-      "profile": "DoS_SYN_Flood",
-      "sent": 1,
-      "blocked": 1,
-      "evaded": 0,
-      "alerted": 0,
-      "classes": {
-        "PortScan": 1
-      },
-      "evasion_rate": 0.0
-    }
-  ],
-  "top_evaders": [
-    {
-      "profile": "PortScan_TCP",
+      "profile": "BruteForxExfiltra_g1",
       "sent": 2,
       "blocked": 0,
       "evaded": 2,
       "alerted": 0,
       "classes": {
         "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_xPortScan_g1",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_RDP_g1",
+      "sent": 3,
+      "blocked": 0,
+      "evaded": 3,
+      "alerted": 0,
+      "classes": {
+        "none": 3
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForxPortScan_g1",
+      "sent": 3,
+      "blocked": 0,
+      "evaded": 3,
+      "alerted": 0,
+      "classes": {
+        "none": 3
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DNS_Tunnel_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "C2_BeacoxC2_Beaco_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_SSH_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_Flood_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "LateralMovement_SMB_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "PortScanxBruteFor_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForxDoS_SYN__g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "PortScan_TCP_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_RDP_g1_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_Flood_g2",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "PortScan_TCP_g2",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_xPortScan_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForxPortScan_g2",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "Exfiltration_HTTPS_g2",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "PortScanxExfiltra_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DNS_Tunnel_g1_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_xPortScan_g1_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    }
+  ],
+  "top_evaders": [
+    {
+      "profile": "C2_Beacon",
+      "sent": 3,
+      "blocked": 0,
+      "evaded": 3,
+      "alerted": 0,
+      "classes": {
+        "none": 3
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_RDP",
+      "sent": 6,
+      "blocked": 0,
+      "evaded": 6,
+      "alerted": 0,
+      "classes": {
+        "none": 6
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_SSH",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "PortScan_TCP",
+      "sent": 12,
+      "blocked": 0,
+      "evaded": 12,
+      "alerted": 0,
+      "classes": {
+        "none": 12
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_Flood",
+      "sent": 8,
+      "blocked": 0,
+      "evaded": 8,
+      "alerted": 0,
+      "classes": {
+        "none": 8
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "LateralMovement_SMB",
+      "sent": 3,
+      "blocked": 0,
+      "evaded": 3,
+      "alerted": 0,
+      "classes": {
+        "none": 3
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "Exfiltration_HTTPS",
+      "sent": 12,
+      "blocked": 0,
+      "evaded": 12,
+      "alerted": 0,
+      "classes": {
+        "none": 12
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DNS_Tunnel",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "SlowLoris",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_UDP_Flood",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForxExfiltra_g1",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_xPortScan_g1",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_RDP_g1",
+      "sent": 3,
+      "blocked": 0,
+      "evaded": 3,
+      "alerted": 0,
+      "classes": {
+        "none": 3
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForxPortScan_g1",
+      "sent": 3,
+      "blocked": 0,
+      "evaded": 3,
+      "alerted": 0,
+      "classes": {
+        "none": 3
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DNS_Tunnel_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "C2_BeacoxC2_Beaco_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_SSH_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_Flood_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "LateralMovement_SMB_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "PortScanxBruteFor_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForxDoS_SYN__g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "PortScan_TCP_g1",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForce_RDP_g1_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_Flood_g2",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "PortScan_TCP_g2",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_xPortScan_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "BruteForxPortScan_g2",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "Exfiltration_HTTPS_g2",
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "alerted": 0,
+      "classes": {
+        "none": 2
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "PortScanxExfiltra_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DNS_Tunnel_g1_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
+      },
+      "evasion_rate": 1.0
+    },
+    {
+      "profile": "DoS_SYN_xPortScan_g1_g2",
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "alerted": 0,
+      "classes": {
+        "none": 1
       },
       "evasion_rate": 1.0
     }
@@ -123,10 +695,10 @@
     {
       "name": "DoS_SYN_Flood",
       "generation": 0,
-      "sent": 1,
-      "blocked": 1,
-      "evaded": 0,
-      "evasion_rate": 0.0,
+      "sent": 8,
+      "blocked": 0,
+      "evaded": 8,
+      "evasion_rate": 1.0,
       "params": {
         "bytes_in": 60,
         "bytes_out": 0,
@@ -140,30 +712,11 @@
       }
     },
     {
-      "name": "DoS_UDP_Flood",
-      "generation": 0,
-      "sent": 2,
-      "blocked": 2,
-      "evaded": 0,
-      "evasion_rate": 0.0,
-      "params": {
-        "bytes_in": 1400,
-        "bytes_out": 0,
-        "port_dst": 0,
-        "protocol": 17,
-        "flags": 0,
-        "entropy": 0.1,
-        "rate_hz": 6000,
-        "burst_prob": 0.7,
-        "jitter": 0.2
-      }
-    },
-    {
       "name": "PortScan_TCP",
       "generation": 0,
-      "sent": 2,
+      "sent": 12,
       "blocked": 0,
-      "evaded": 2,
+      "evaded": 12,
       "evasion_rate": 1.0,
       "params": {
         "bytes_in": 60,
@@ -178,102 +731,235 @@
       }
     },
     {
-      "name": "ExfiltraxBruteFor_g2",
-      "generation": 2,
-      "sent": 0,
+      "name": "BruteForce_RDP",
+      "generation": 0,
+      "sent": 6,
       "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
+      "evaded": 6,
+      "evasion_rate": 1.0,
       "params": {
-        "bytes_in": 512,
-        "bytes_out": 256,
-        "port_dst": 443,
+        "bytes_in": 200,
+        "bytes_out": 150,
+        "port_dst": 3389,
         "protocol": 6,
         "flags": 24,
-        "entropy": 0.95,
-        "rate_hz": 60,
+        "entropy": 0.5,
+        "rate_hz": 180,
         "burst_prob": 0.2,
-        "jitter": 0.2
-      }
-    },
-    {
-      "name": "ExfiltraxDNS_Tunn_g1_g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 512,
-        "bytes_out": 256,
-        "port_dst": 443,
-        "protocol": 17,
-        "flags": 0,
-        "entropy": 0.95,
-        "rate_hz": 60,
-        "burst_prob": 0.1,
-        "jitter": 0.2
-      }
-    },
-    {
-      "name": "BruteForxExfiltra_g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 512,
-        "bytes_out": 40,
-        "port_dst": 443,
-        "protocol": 17,
-        "flags": 24,
-        "entropy": 0.2830463261056099,
-        "rate_hz": 60,
-        "burst_prob": 0.1,
         "jitter": 0.25
       }
     },
     {
-      "name": "DoS_UDP_Flood_g2",
-      "generation": 2,
-      "sent": 0,
+      "name": "Exfiltration_HTTPS",
+      "generation": 0,
+      "sent": 12,
       "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
+      "evaded": 12,
+      "evasion_rate": 1.0,
       "params": {
-        "bytes_in": 1072,
-        "bytes_out": 0,
-        "port_dst": 0,
-        "protocol": 17,
-        "flags": 0,
-        "entropy": 0.10713825076403297,
-        "rate_hz": 4739.392763180843,
-        "burst_prob": 0.7,
-        "jitter": 0.2
-      }
-    },
-    {
-      "name": "ExfiltraxDNS_Tunn_g1_g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 495,
-        "bytes_out": 256,
+        "bytes_in": 200,
+        "bytes_out": 9000,
         "port_dst": 443,
-        "protocol": 17,
-        "flags": 0,
-        "entropy": 0.9450895817034102,
-        "rate_hz": 57.92045452399751,
-        "burst_prob": 0.1,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.95,
+        "rate_hz": 300,
+        "burst_prob": 0.4,
         "jitter": 0.2
       }
     },
     {
-      "name": "ExfiltraxDNS_Tunn_g2",
+      "name": "DoS_SYN_xPortScan_g1_g2",
+      "generation": 2,
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "evasion_rate": 1.0,
+      "params": {
+        "bytes_in": 64,
+        "bytes_out": 0,
+        "port_dst": -1,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.021928983196846073,
+        "rate_hz": 455.1217677748459,
+        "burst_prob": 0.8,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "LateralMovement_SMB_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 400,
+        "bytes_out": 300,
+        "port_dst": 445,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.6,
+        "rate_hz": 50,
+        "burst_prob": 0.15,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "DNS_Tunnel_g1_g2",
+      "generation": 2,
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "evasion_rate": 1.0,
+      "params": {
+        "bytes_in": 558,
+        "bytes_out": 256,
+        "port_dst": 53,
+        "protocol": 17,
+        "flags": 0,
+        "entropy": 0.9708466325275472,
+        "rate_hz": 57.54303063370094,
+        "burst_prob": 0.1,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "DoS_SYN_xPortScan_g2",
+      "generation": 2,
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "evasion_rate": 1.0,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": -1,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.05,
+        "rate_hz": 400,
+        "burst_prob": 0.3,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "DoS_SYN_Flood_g2",
+      "generation": 2,
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "evasion_rate": 1.0,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.05,
+        "rate_hz": 8000,
+        "burst_prob": 0.8,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "BruteForxPortScan_g2",
+      "generation": 2,
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "evasion_rate": 1.0,
+      "params": {
+        "bytes_in": 55,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.02080249380156168,
+        "rate_hz": 197.83486514590442,
+        "burst_prob": 0.2,
+        "jitter": 0.1
+      }
+    },
+    {
+      "name": "BruteForce_RDP_g1_g2",
+      "generation": 2,
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "evasion_rate": 1.0,
+      "params": {
+        "bytes_in": 200,
+        "bytes_out": 150,
+        "port_dst": 3389,
+        "protocol": 6,
+        "flags": 24,
+        "entropy": 0.5,
+        "rate_hz": 180,
+        "burst_prob": 0.2,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "PortScanxBruteFor_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 22,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.43852702869883625,
+        "rate_hz": 180,
+        "burst_prob": 0.2,
+        "jitter": 0.25
+      }
+    },
+    {
+      "name": "PortScanxExfiltra_g2",
+      "generation": 2,
+      "sent": 1,
+      "blocked": 0,
+      "evaded": 1,
+      "evasion_rate": 1.0,
+      "params": {
+        "bytes_in": 54,
+        "bytes_out": 0,
+        "port_dst": 443,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.018429267817377082,
+        "rate_hz": 407.3293812968157,
+        "burst_prob": 0.3,
+        "jitter": 0.2
+      }
+    },
+    {
+      "name": "DoS_SYN_xPortScan_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 59,
+        "bytes_out": 0,
+        "port_dst": -1,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.019786757195891548,
+        "rate_hz": 518.2060675769172,
+        "burst_prob": 0.8,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "DNS_TunnxBruteFor_g2",
       "generation": 2,
       "sent": 0,
       "blocked": 0,
@@ -281,245 +967,130 @@
       "evasion_rate": 0.5,
       "params": {
         "bytes_in": 200,
-        "bytes_out": 120,
+        "bytes_out": 256,
+        "port_dst": 53,
+        "protocol": 6,
+        "flags": 0,
+        "entropy": 0.5,
+        "rate_hz": 180,
+        "burst_prob": 0.2,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "DoS_SYN_xPortScan_g1_g2",
+      "generation": 2,
+      "sent": 0,
+      "blocked": 0,
+      "evaded": 0,
+      "evasion_rate": 0.5,
+      "params": {
+        "bytes_in": 60,
+        "bytes_out": 0,
+        "port_dst": 80,
+        "protocol": 6,
+        "flags": 2,
+        "entropy": 0.04781487994852445,
+        "rate_hz": 352.58676908104013,
+        "burst_prob": 0.8,
+        "jitter": 0.15
+      }
+    },
+    {
+      "name": "Exfiltration_HTTPS_g2",
+      "generation": 2,
+      "sent": 2,
+      "blocked": 0,
+      "evaded": 2,
+      "evasion_rate": 1.0,
+      "params": {
+        "bytes_in": 200,
+        "bytes_out": 9000,
         "port_dst": 443,
         "protocol": 6,
         "flags": 24,
-        "entropy": 0.88,
-        "rate_hz": 8,
-        "burst_prob": 0.1,
-        "jitter": 0.3
+        "entropy": 0.95,
+        "rate_hz": 300,
+        "burst_prob": 0.4,
+        "jitter": 0.2
       }
     },
     {
-      "name": "PortScanxDoS_SYN__g1_g2",
+      "name": "PortScan_TCP_g2",
       "generation": 2,
-      "sent": 0,
+      "sent": 2,
       "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
+      "evaded": 2,
+      "evasion_rate": 1.0,
       "params": {
-        "bytes_in": 60,
-        "bytes_out": 0,
-        "port_dst": 80,
-        "protocol": 6,
-        "flags": 2,
-        "entropy": 0.05,
-        "rate_hz": 400,
-        "burst_prob": 0.3,
-        "jitter": 0.15
-      }
-    },
-    {
-      "name": "DoS_UDP_xBruteFor_g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 130,
-        "bytes_out": 0,
-        "port_dst": 0,
-        "protocol": 17,
-        "flags": 24,
-        "entropy": 0.4339375585096774,
-        "rate_hz": 5339.106973578068,
-        "burst_prob": 0.2,
-        "jitter": 0.25
-      }
-    },
-    {
-      "name": "PortScanxSlowLori_g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 63,
-        "bytes_out": 40,
-        "port_dst": 80,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.021822454812178253,
-        "rate_hz": 385.55404088899985,
-        "burst_prob": 0.3,
-        "jitter": 0.25
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 60,
-        "bytes_out": 0,
-        "port_dst": 80,
-        "protocol": 6,
-        "flags": 2,
-        "entropy": 0.05,
-        "rate_hz": 400,
-        "burst_prob": 0.3,
-        "jitter": 0.15
-      }
-    },
-    {
-      "name": "PortScanxPortScan_g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 61,
+        "bytes_in": 64,
         "bytes_out": 0,
         "port_dst": -1,
         "protocol": 6,
         "flags": 2,
-        "entropy": 0.020366879329279126,
-        "rate_hz": 392.6811349157407,
+        "entropy": 0.020898416524867316,
+        "rate_hz": 398.8832326114124,
         "burst_prob": 0.3,
         "jitter": 0.1
       }
     },
     {
-      "name": "BruteForxDoS_UDP__g2",
+      "name": "BruteForce_RDP_g2",
       "generation": 2,
       "sent": 0,
       "blocked": 0,
       "evaded": 0,
       "evasion_rate": 0.5,
       "params": {
-        "bytes_in": 120,
-        "bytes_out": 80,
-        "port_dst": 22,
-        "protocol": 17,
-        "flags": 0,
-        "entropy": 0.1,
-        "rate_hz": 250,
-        "burst_prob": 0.7,
-        "jitter": 0.2
-      }
-    },
-    {
-      "name": "BruteForce_SSH_g1_g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 119,
-        "bytes_out": 80,
-        "port_dst": 22,
+        "bytes_in": 200,
+        "bytes_out": 150,
+        "port_dst": 3389,
         "protocol": 6,
         "flags": 24,
-        "entropy": 0.42714498521964794,
-        "rate_hz": 275.9972799586834,
+        "entropy": 0.5,
+        "rate_hz": 180,
         "burst_prob": 0.2,
         "jitter": 0.25
       }
     },
     {
-      "name": "PortScanxBruteFor_g2",
+      "name": "PortScan_TCP_g2",
       "generation": 2,
       "sent": 0,
       "blocked": 0,
       "evaded": 0,
       "evasion_rate": 0.5,
       "params": {
-        "bytes_in": 60,
-        "bytes_out": 40,
-        "port_dst": 80,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.05,
-        "rate_hz": 2.0453085224002354,
-        "burst_prob": 0.2,
-        "jitter": 0.25
-      }
-    },
-    {
-      "name": "DoS_UDP_xDoS_UDP__g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 1400,
+        "bytes_in": 58,
         "bytes_out": 0,
-        "port_dst": 0,
-        "protocol": 17,
-        "flags": 0,
-        "entropy": 0.1,
-        "rate_hz": 6000,
-        "burst_prob": 0.7,
-        "jitter": 0.2
-      }
-    },
-    {
-      "name": "PortScanxBruteFor_g2",
-      "generation": 2,
-      "sent": 0,
-      "blocked": 0,
-      "evaded": 0,
-      "evasion_rate": 0.5,
-      "params": {
-        "bytes_in": 60,
-        "bytes_out": 0,
-        "port_dst": 80,
+        "port_dst": -1,
         "protocol": 6,
-        "flags": 24,
-        "entropy": 0.05,
-        "rate_hz": 400,
+        "flags": 2,
+        "entropy": 0.020816675696697255,
+        "rate_hz": 400.8349158784336,
         "burst_prob": 0.3,
-        "jitter": 0.15
-      }
-    },
-    {
-      "name": "BruteForce_SSH",
-      "generation": 0,
-      "sent": 3,
-      "blocked": 1,
-      "evaded": 0,
-      "evasion_rate": 0.0,
-      "params": {
-        "bytes_in": 120,
-        "bytes_out": 80,
-        "port_dst": 22,
-        "protocol": 6,
-        "flags": 24,
-        "entropy": 0.45,
-        "rate_hz": 250,
-        "burst_prob": 0.2,
-        "jitter": 0.25
+        "jitter": 0.1
       }
     }
   ],
   "db_stats": {
-    "total": 1806,
+    "total": 2096,
     "top_label": "FileSystemAnomaly/Ransomware",
-    "avg_confidence": 0.2598,
-    "threat_count": 21,
+    "avg_confidence": 0.2572,
+    "threat_count": 0,
     "top_class": "FileSystemAnomaly/Ransomware",
     "class_counts": {
-      "UnknownHighSeverity": 37,
+      "UnknownHighSeverity": 26,
       "LateralMovement/Persistence": 2,
       "BruteForce/CredentialStuffing": 233,
       "DoS/DDoS": 227,
-      "PortScan": 6,
+      "PortScan": 5,
       "EncryptedC2/Exfiltration": 51,
-      "UnknownLowSeverity": 11,
+      "UnknownLowSeverity": 5,
       "FileSystemAnomaly/Ransomware": 430,
       "suspicious": 300,
       "malicious": 299,
-      "unknown": 200,
-      "DNSTunnel": 2
+      "unknown": 200
     }
   }
 }

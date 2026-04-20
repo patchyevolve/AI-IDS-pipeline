@@ -18,9 +18,11 @@ class TrainingValidator:
     Tracks false positives and false negatives during training.
     Auto-corrects database when errors detected.
     
-    NOTE: This validator is called from run.py's on_network_event handler,
-    not via event bus subscription. The validator receives ground truth
-    from the attacker's metadata (is_attack, attack_class).
+    NOTE: This validator can be called in two ways:
+    1. Directly from run.py's on_network_event handler (Python pipeline)
+    2. Via event bus subscription to decoder_output (works with C++ pipeline too)
+    
+    The validator receives ground truth from the attacker's metadata (is_attack, attack_class).
     """
     
     def __init__(self, event_bus, db=None, output_dir: str = "validation"):
@@ -33,6 +35,9 @@ class TrainingValidator:
         self.corrections_made = 0
         self.fn_corrections = 0
         self.fp_corrections = 0
+        
+        # Subscribe to decoder_output events so validation works with both Python and C++ pipelines
+        self.bus.subscribe("decoder_output", self._on_decoder_output)
     
     def validate_and_correct(self, event: dict):
         """
@@ -82,6 +87,31 @@ class TrainingValidator:
         if (now - self.last_report_time).total_seconds() >= self.report_interval:
             self._print_periodic_report()
             self.last_report_time = now
+    
+    def _on_decoder_output(self, data: dict):
+        """
+        Event handler for decoder_output events.
+        Works with both Python and C++ pipelines.
+        Validates decisions against ground truth metadata.
+        """
+        metadata = data.get("metadata", {})
+        
+        # Only validate if we have ground truth (from attacker)
+        if metadata.get("is_attack") is not None:
+            self.validate_and_correct({
+                "is_attack": metadata.get("is_attack", False),
+                "decision": data.get("decision", "Ignore"),
+                "attack_class": metadata.get("attack_class", "unknown"),
+                "confidence": data.get("confidence", 0.0),
+                "feature_vector": data.get("feature_vector", [0.5] * 64),
+                "source": data.get("source", ""),
+                "destination": data.get("destination", ""),
+                "port_dst": data.get("port_dst", 0),
+                "protocol": data.get("protocol", 0),
+                "flags": data.get("flags", 0),
+                "rate_hz": data.get("rate_hz", 0.0),
+                "timestamp": data.get("timestamp", datetime.now().isoformat()),
+            })
     
     def _correct_false_negative(self, event: dict):
         """Correct FN: attack was missed, add to DB with high confidence."""
