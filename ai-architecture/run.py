@@ -340,9 +340,10 @@ def main():
     if enable_validation or enable_attacker:
         # ✓ Use TrainingValidator for real-time validation during training
         # It receives ground truth from attacker metadata (is_attack, attack_class)
+        # It auto-corrects database when FN/FP detected
         from validation.training_validator import TrainingValidator
-        validator = TrainingValidator(bus, output_dir="validation")
-        print("[run.py] Validation enabled — tracking FP/FN in real-time")
+        validator = TrainingValidator(bus, db=db, output_dir="validation")
+        print("[run.py] Validation enabled — tracking FP/FN and auto-correcting database")
 
     bridge.start()
     run_pipeline(bus, cnn, rnn, decoder, db, bridge, validator=validator)
