@@ -79,10 +79,10 @@ class AdaptiveThresholds:
     Per-scope EMA baselines → adaptive alert/block thresholds.
     Global baseline (α=0.001), IP baseline (α=0.05).
     """
-    K_ALERT = 3.0
-    K_BLOCK = 5.0
-    MIN_T   = 0.30
-    MAX_T   = 0.90
+    K_ALERT = 2.0  # Reduced from 3.0 (was too aggressive)
+    K_BLOCK = 3.5  # Reduced from 5.0 (was too aggressive)
+    MIN_T   = 0.40  # Increased from 0.30 (minimum threshold)
+    MAX_T   = 0.85  # Reduced from 0.90 (maximum threshold)
 
     def __init__(self):
         self._global_mean = 0.0
@@ -93,7 +93,7 @@ class AdaptiveThresholds:
 
     def update(self, source: str, anomaly_score: float):
         # Freeze if anomaly is high (ids_adaptive.hpp maybe_freeze)
-        self._frozen[source] = anomaly_score >= 0.70
+        self._frozen[source] = anomaly_score >= 0.80  # Increased from 0.70
 
         # Global EMA (very slow)
         if not self._frozen.get("__global__", False):
@@ -110,10 +110,19 @@ class AdaptiveThresholds:
     def thresholds(self, source: str = "") -> dict:
         mean = self._ip_mean.get(source, self._global_mean) if source else self._global_mean
         std  = math.sqrt(max(self._ip_var.get(source, self._global_var), 1e-6))
-        alert = max(self.MIN_T, min(self.MAX_T, mean + self.K_ALERT * std))
-        block = max(alert + 0.05, min(0.95, mean + self.K_BLOCK * std))
-        log   = max(0.10, min(alert - 0.05, alert * 0.6))
-        return {"ignore": log * 0.5, "log": log, "alert": alert, "block": block}
+        
+        # Calculate thresholds with better spacing
+        # Ignore: very low confidence
+        # Log: low confidence (normal traffic)
+        # Alert: medium confidence (suspicious)
+        # Block: high confidence (likely attack)
+        
+        ignore = max(0.05, min(0.20, mean * 0.3))
+        log = max(0.20, min(0.40, mean + self.K_ALERT * std * 0.5))
+        alert = max(0.40, min(self.MAX_T, mean + self.K_ALERT * std))
+        block = max(alert + 0.10, min(0.95, mean + self.K_BLOCK * std))
+        
+        return {"ignore": ignore, "log": log, "alert": alert, "block": block}
 
 
 # Correlation engine (ids_correlation.hpp)
@@ -527,11 +536,18 @@ class HybridDecoder:
         # ✓ FIX 3: Use database override if available, otherwise use thresholds
         if db_decision_override and db_decision_override in DECISIONS:
             decision = db_decision_override
-        elif   fused < thresholds["ignore"]: decision = "Ignore"
-        elif fused < thresholds["log"]:    decision = "Log"
-        elif fused < thresholds["alert"]:  decision = "Alert"
-        elif fused < thresholds["block"]:  decision = "Block"
-        else:                              decision = "Escalate"
+        elif   fused < thresholds["ignore"]: 
+            decision = "Ignore"
+        elif fused < thresholds["log"]:    
+            decision = "Log"
+        elif fused < thresholds["alert"]:  
+            decision = "Alert"
+        elif fused < thresholds["block"]:  
+            decision = "Block"
+        else:
+            # Only escalate if confidence is VERY high (>0.90)
+            # This prevents over-escalation of uncertain threats
+            decision = "Escalate" if fused > 0.90 else "Block"
 
         # 6. classifyAttack()
         attack_class = cnn_event.get("atk_class", "none")
