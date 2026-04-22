@@ -497,18 +497,23 @@ class HybridDecoder:
                 # Add extra boost for high-similarity matches
                 db_boost += 0.10
 
-        fused = (W_LOCAL    * local_score   +
-                 W_SEGMENT  * segment_trend +
-                 W_HISTORY  * anomaly_hist  +
-                 W_DRIFT    * drift_norm    +
-                 retrieval_boost + rule_boost + meta_fused) / 2.0
+        # Calculate base score with proper normalization
+        # Base weights sum to 1.0: W_LOCAL + W_SEGMENT + W_HISTORY + W_DRIFT = 1.0
+        base_score = (W_LOCAL    * local_score   +
+                      W_SEGMENT  * segment_trend +
+                      W_HISTORY  * anomaly_hist  +
+                      W_DRIFT    * drift_norm)
         
-        # Apply database boost AFTER base fusion
-        # This ensures corrected signatures (confidence=0.95) directly improve decisions
-        fused = fused + db_boost
+        # Additional signals: retrieval_boost, rule_boost, meta_fused
+        # These are already normalized to [0, 1], so limit their contribution
+        additional_signals = (retrieval_boost + rule_boost + meta_fused) * 0.05  # Max 5% boost
+        
+        # Combine base score with additional signals and database boost
+        fused = base_score + additional_signals + db_boost
                  
         if cnn_is_attack:
-            fused = max(fused, cnn_event.get("is_attack_prob", 0.0) + retrieval_boost)
+            # If CNN is confident it's an attack, use CNN score as minimum
+            fused = max(fused, cnn_event.get("is_attack_prob", 0.0) * 0.7)
         else:
             # ✓ FIX: During training, don't suppress scores too aggressively
             # Only suppress if Gate CNN is VERY confident it's normal (prob < 0.15)
