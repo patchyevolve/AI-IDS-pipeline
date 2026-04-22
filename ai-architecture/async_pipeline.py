@@ -184,27 +184,43 @@ class AsyncPipeline:
                 cnn_out = rnn_out["_cnn_out"]
                 event = cnn_out["_network_event"]
                 
-                # Database retrieval (can be slow, but now parallel)
-                db_mem = self.db.retrieve_memory(
-                    embedding=cnn_out["feature_vector"],
-                    source=event.get("source", ""),
-                    destination=event.get("destination", ""),
-                    port_dst=cnn_out.get("port_dst", 0),
-                    frame_id=event.get("frame_id", 0),
-                )
+                try:
+                    # Database retrieval (can be slow, but now parallel)
+                    db_mem = self.db.retrieve_memory(
+                        embedding=cnn_out["feature_vector"],
+                        source=event.get("source", ""),
+                        destination=event.get("destination", ""),
+                        port_dst=cnn_out.get("port_dst", 0),
+                        frame_id=event.get("frame_id", 0),
+                    )
+                except Exception as db_err:
+                    print(f"[decoder-worker] DB retrieval error: {db_err}")
+                    db_mem = {"retrieved": []}
                 
-                # Decode
-                from decoder.mutation_predictor import MutationAwareDecoder
-                if isinstance(self.decoder, MutationAwareDecoder):
-                    dec_out = self.decoder.decode_with_mutation_awareness(
-                        cnn_out, rnn_out, db_mem["retrieved"], 
-                        metadata=event.get("metadata", {})
-                    )
-                else:
-                    dec_out = self.decoder.decode(
-                        cnn_out, rnn_out, db_mem["retrieved"],
-                        metadata=event.get("metadata", {})
-                    )
+                try:
+                    # Decode
+                    from decoder.mutation_predictor import MutationAwareDecoder
+                    if isinstance(self.decoder, MutationAwareDecoder):
+                        dec_out = self.decoder.decode_with_mutation_awareness(
+                            cnn_out, rnn_out, db_mem["retrieved"], 
+                            metadata=event.get("metadata", {})
+                        )
+                    else:
+                        dec_out = self.decoder.decode(
+                            cnn_out, rnn_out, db_mem["retrieved"],
+                            metadata=event.get("metadata", {})
+                        )
+                except Exception as decode_err:
+                    print(f"[decoder-worker] Decode error: {decode_err}")
+                    # Create minimal valid output on error
+                    dec_out = {
+                        "decision": "Log",
+                        "confidence": 0.0,
+                        "attack_class": "unknown",
+                        "source": event.get("source", ""),
+                        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                        "explanation": f"Decode error: {decode_err}",
+                    }
                 
                 # Attach metadata for next stages
                 dec_out["_event"] = event
@@ -221,7 +237,7 @@ class AsyncPipeline:
             except queue.Empty:
                 continue
             except Exception as e:
-                print(f"[decoder-worker] Error: {e}")
+                print(f"[decoder-worker] Unexpected error: {e}")
     
     def _validator_worker(self):
         """Validator processing worker"""

@@ -408,21 +408,30 @@ class HybridDecoder:
         l2l_state  = (gs.get("level_states", [[]] * 4)[3]
                       if gs.get("level_states") else [0.0] * SSM_STATE_DIM)
 
-        # Pad/truncate all tokens to EMBEDDING_DIM
-        def _pad(v, dim=EMBEDDING_DIM):
-            return (list(v) + [0.0] * dim)[:dim]
+        # Normalize all vectors to EMBEDDING_DIM (64) to prevent shape mismatches
+        def _normalize_embedding(v, target_dim=EMBEDDING_DIM):
+            """Normalize vector to target dimension by truncating or padding"""
+            v_list = list(v) if not isinstance(v, list) else v
+            if len(v_list) == 0:
+                return [0.0] * target_dim
+            if len(v_list) > target_dim:
+                # Truncate: take first target_dim elements
+                return v_list[:target_dim]
+            else:
+                # Pad: add zeros to reach target_dim
+                return v_list + [0.0] * (target_dim - len(v_list))
 
         tokens = [
-            _pad(local_emb),
-            _pad(seg_vec),
-            _pad(l2s_state),
-            _pad(l2l_state),
+            _normalize_embedding(local_emb),
+            _normalize_embedding(seg_vec),
+            _normalize_embedding(l2s_state),
+            _normalize_embedding(l2l_state),
         ]
         # Add retrieved DB records as tokens (up to K_TOP_RETRIEVAL)
         for rec in db_memory[:K_TOP_RETRIEVAL]:
             emb = rec.get("embedding") or rec.get("feature_vector")
             if emb:
-                tokens.append(_pad(emb))
+                tokens.append(_normalize_embedding(emb))
 
         # 2. Single-head attention
         pooled, attn_weights = _single_head_attention(tokens)
