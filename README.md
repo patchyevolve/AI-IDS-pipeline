@@ -742,6 +742,5 @@ If you use CNNFOLE in your research, please cite:
 
 ---
 
-**Status**: Production Ready ✓
-**Last Updated**: April 20, 2026
+**Last Updated**: April 22, 2026
 **Version**: 1.0.0

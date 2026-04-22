@@ -1,75 +1,51 @@
 {
-  "session_start": "2026-04-21T01:28:43.831717",
-  "total_events": 1640,
-  "true_positives": 470,
+  "session_start": "2026-04-22T11:21:08.830920",
+  "total_events": 20,
+  "true_positives": 20,
   "true_negatives": 0,
   "false_positives": 0,
-  "false_negatives": 1170,
+  "false_negatives": 0,
   "by_class": {
-    "EncryptedC2/Exfiltration": {
-      "tp": 18,
+    "BruteForce/CredentialStuffing": {
+      "tp": 6,
       "tn": 0,
       "fp": 0,
-      "fn": 48
+      "fn": 0
     },
-    "DNSTunnel": {
-      "tp": 10,
+    "LateralMovement/Persistence": {
+      "tp": 2,
       "tn": 0,
       "fp": 0,
       "fn": 0
     },
     "DoS/DDoS": {
-      "tp": 33,
+      "tp": 10,
       "tn": 0,
       "fp": 0,
-      "fn": 102
+      "fn": 0
     },
-    "PortScan": {
-      "tp": 396,
+    "EncryptedC2/Exfiltration": {
+      "tp": 2,
       "tn": 0,
       "fp": 0,
-      "fn": 784
-    },
-    "LateralMovement/Persistence": {
-      "tp": 5,
-      "tn": 0,
-      "fp": 0,
-      "fn": 8
-    },
-    "BruteForce/CredentialStuffing": {
-      "tp": 8,
-      "tn": 0,
-      "fp": 0,
-      "fn": 228
+      "fn": 0
     }
   },
   "by_decision": {
-    "Block": {
-      "correct": 86,
-      "incorrect": 0
-    },
-    "Log": {
-      "correct": 0,
-      "incorrect": 1042
-    },
-    "Alert": {
-      "correct": 8,
-      "incorrect": 0
-    },
     "Escalate": {
-      "correct": 376,
+      "correct": 6,
       "incorrect": 0
     },
-    "Ignore": {
-      "correct": 0,
-      "incorrect": 128
+    "Block": {
+      "correct": 14,
+      "incorrect": 0
     }
   },
-  "accuracy": 0.2866,
+  "accuracy": 1.0,
   "precision": 1.0,
-  "recall": 0.2866,
-  "f1_score": 0.4455,
+  "recall": 1.0,
+  "f1_score": 1.0,
   "fpr": 0,
-  "fnr": 0.7134,
-  "session_end": "2026-04-21T01:46:45.824632"
+  "fnr": 0.0,
+  "session_end": "2026-04-22T11:22:00.800437"
 }
