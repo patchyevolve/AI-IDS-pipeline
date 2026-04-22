@@ -67,54 +67,131 @@ python tests/test_validation_metrics.py
 
 ## Architecture
 
-### 8-Stage Build-Up
+### 7-Tier System Architecture
 
 ```
-Stage 1: CNN Foundation
-  └─ Feature extraction (64 dims)
-
-Stage 2: RNN Pattern Recognition
-  └─ Temporal anomaly detection
-
-Stage 3: Decision Engine
-  └─ Block/Alert/Log/Ignore decisions
-
-Stage 4: Database & Memory
-  └─ Threat signature storage
-
-Stage 5: Attacker Evolution
-  └─ Genetic algorithm mutations
-
-Stage 6: Validation & Learning
-  └─ FP/FN detection & auto-correction
-
-Stage 7: C++ Backend
-  └─ High-performance production deployment
-
-Stage 8: Integration & Training
-  └─ Co-evolutionary loop
+┌─────────────────────────────────────────────────────────────┐
+│ Tier 7: Visualization & UI                                  │
+│ (Dashboard, CLI, Tkinter)                                   │
+└─────────────────────────────────────────────────────────────┘
+                              ↑
+┌─────────────────────────────────────────────────────────────┐
+│ Tier 6: Threat Intelligence                                 │
+│ (MITRE ATT&CK, Campaign Correlation, Behavioral Analysis)   │
+└─────────────────────────────────────────────────────────────┘
+                              ↑
+┌─────────────────────────────────────────────────────────────┐
+│ Tier 5: Attack Simulation                                   │
+│ (Attack Engine, Mutator, Genetic Algorithm)                 │
+└─────────────────────────────────────────────────────────────┘
+                              ↑
+┌─────────────────────────────────────────────────────────────┐
+│ Tier 4: Validation & Learning                               │
+│ (Training Validator, Metrics Tracker, Auto-Corrector)       │
+└─────────────────────────────────────────────────────────────┘
+                              ↑
+┌─────────────────────────────────────────────────────────────┐
+│ Tier 3: Network & Capture                                   │
+│ (IDS Bridge, Firewall Enforcer, Network Config)             │
+└─────────────────────────────────────────────────────────────┘
+                              ↑
+┌─────────────────────────────────────────────────────────────┐
+│ Tier 2: Data & Storage                                      │
+│ (Database Engine, Mutation Predictor, Vector Store)         │
+└─────────────────────────────────────────────────────────────┘
+                              ↑
+┌─────────────────────────────────────────────────────────────┐
+│ Tier 1: Core Engines                                        │
+│ (CNN Gate, RNN Temporal, Hybrid Decoder)                    │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-### System Flow
+### Packet Processing Flow
 
 ```
-Network Traffic
+Network Packet
     ↓
-[CNN] Extract Features (64 dims)
+ids_bridge.IDSBridge._packet_callback()
+    ├─ Extract Features (source, dest, port, protocol, etc)
     ↓
-[RNN] Detect Patterns (Anomaly Score)
+cnn.cnn_engine.forward()
+    ├─ Gate Classifier: is_attack_prob
+    ├─ Autoencoder: anomaly_score
+    └─ Feature Vector: 64 dimensions
     ↓
-[Database] Lookup Similar Threats
+rnn.rnn_engine.forward()
+    ├─ Temporal Analysis: anomaly_trend
+    ├─ Drift Detection: drift_score
+    └─ State Update: SSM state
     ↓
-[Decoder] Make Decision (Block/Alert/Log/Ignore)
+database.db_engine.retrieve_memory()
+    ├─ Vector Search: similarity matching
+    └─ Retrieved: Top-K similar signatures
     ↓
-[Validator] Check Correctness (FP/FN)
+decoder.decoder_engine.decode()
+    ├─ Attention Pooling: token fusion
+    ├─ Score Fusion: multi-factor decision
+    ├─ Threshold Matching: adaptive thresholds
+    └─ Decision: Block/Alert/Log/Escalate
     ↓
-[Auto-Corrector] Learn from Mistakes
+decoder.mutation_predictor.predict_mutations()
+    ├─ Evasion Tactics: predicted mutations
+    └─ Mutation Scores: likelihood of evasion
     ↓
-[Attacker] Evolve Evasions
+threat_intelligence.threat_intelligence_engine.process_attack()
+    ├─ MITRE Mapping: tactics & techniques
+    ├─ Campaign Correlation: multi-stage attacks
+    ├─ Behavioral Analysis: anomaly detection
+    └─ Threat Actor: attribution
     ↓
-Loop Back to CNN
+Decision & Action
+    ├─ firewall_enforcer.block_ip() (if Block)
+    ├─ database.db_engine.log_prediction() (store for learning)
+    └─ event_bus.emit("decoder_output") (notify listeners)
+```
+
+### Validation & Learning Loop
+
+```
+Decoder Output
+    ↓
+validation.training_validator._on_decoder_output()
+    ├─ Compare with Ground Truth (from attacker metadata)
+    ├─ Detect FN (missed attack) or FP (blocked benign)
+    ↓
+_correct_false_negative() OR _correct_false_positive()
+    ├─ Create correction record (confidence=0.95)
+    ├─ database.db_engine.log_prediction() (store)
+    ├─ database.db_engine.export_ids_signatures() (export)
+    └─ event_bus.emit("db_updated") (notify)
+    ↓
+decoder.mutation_predictor._on_db_updated()
+    ├─ mutation_predictor.learn_from_database()
+    ├─ Reload patterns immediately
+    └─ Patterns reloaded for next packet
+    ↓
+attacker.attack_engine._receive_feedback()
+    ├─ attacker.mutator.fitness_score() (evaluate evasion)
+    ├─ attacker.mutator.mutate() (evolve next generation)
+    └─ Attacker evolves based on IDS decisions
+    ↓
+Loop Back to Packet Processing
+```
+
+### Cloud Synchronization
+
+```
+Local Database (Instance 1)
+    ↓ (Every 5 minutes)
+database.db_engine.sync_batch() → Pinecone
+    ↓
+Cloud Database (Pinecone Vector Store)
+    ↓ (Broadcast to all instances)
+Local Database (Instance 2)
+Local Database (Instance 3)
+Local Database (Instance N)
+    ↓
+All instances have latest signatures
 ```
 
 ## Performance
@@ -157,43 +234,162 @@ Attack Classes Learned:
 ## Documentation
 
 ### Main Documentation
-- **[REPO_DESCRIPTION.md](REPO_DESCRIPTION.md)** - Complete project overview
-- **[TRAINING_ARCHITECTURE.md](ai-architecture/TRAINING_ARCHITECTURE.md)** - Training system design
-- **[QUICK_START_TRAINING.md](ai-architecture/QUICK_START_TRAINING.md)** - Quick reference
+- **[README.md](README.md)** - This file (project overview)
+- **[PRODUCTION_DEPLOYMENT_ARCHITECTURE.md](PRODUCTION_DEPLOYMENT_ARCHITECTURE.md)** - Production deployment guide
+- **[graphify/GRAPH_CONTEXT.md](graphify/GRAPH_CONTEXT.md)** - Complete codebase architecture reference
+- **[graphify/README.md](graphify/README.md)** - Codebase graph analysis guide
+- **[ai-architecture/README.md](ai-architecture/README.md)** - AI-architecture guide
 
-### Stage Documentation
-- **[Stage 1: CNN Foundation](Stage_1_Foundation_CNN/README.md)** - Feature extraction
-- **[Stage 2: RNN Pattern Recognition](Stage_2_Pattern_Recognition_RNN/README.md)** - Temporal analysis
-- **[Stage 3: Decision Engine](Stage_3_Decision_Engine/README.md)** - Decision making
-- **[Stage 4: Database & Memory](ai-architecture/database/README.md)** - Threat storage
-- **[Stage 5: Attacker Evolution](ai-architecture/attacker/README.md)** - Attack generation
-- **[Stage 6: Validation & Learning](ai-architecture/validation/README.md)** - FP/FN detection
-- **[Stage 7: C++ Backend](ai-architecture/cpp/README.md)** - Production deployment
-- **[Stage 8: Integration](ai-architecture/README.md)** - Full system
+### Component Documentation
+- **[ai-architecture/attacker/README.md](ai-architecture/attacker/README.md)** - Attack engine guide
+- **[ai-architecture/network/](ai-architecture/network/)** - Network capture documentation
+- **[ai-architecture/validation/README.md](ai-architecture/validation/README.md)** - Validation system guide
+
+### Training & Quick Start
+- **[ai-architecture/train.bat](ai-architecture/train.bat)** - Main training script
+- **[ai-architecture/test_5min.bat](ai-architecture/test_5min.bat)** - 5-minute test
+- **[ai-architecture/TRAINING_GUIDE.bat](ai-architecture/TRAINING_GUIDE.bat)** - Training guide
 
 ## Components
 
-### Python IDS Pipeline
-- **CNN Engine** (`ai-architecture/cnn/cnn_engine.py`) - Feature extraction
-- **RNN Engine** (`ai-architecture/rnn/rnn_engine.py`) - Pattern detection
-- **Decoder** (`ai-architecture/decoder/decoder_engine.py`) - Decision making
-- **Database** (`ai-architecture/database/db_engine.py`) - Threat storage
-- **Validator** (`ai-architecture/validation/auto_corrector.py`) - FP/FN detection
+### Tier 1: Core Engines (ML Models)
+- **CNN Engine** (`ai-architecture/cnn/cnn_engine.py`)
+  - Gate Classifier: attack vs normal
+  - Autoencoder: anomaly detection
+  - Feature extraction: 64-dimensional vectors
+  
+- **RNN Engine** (`ai-architecture/rnn/rnn_engine.py`)
+  - State Space Model: temporal analysis
+  - Anomaly trend detection
+  - Drift score calculation
 
-### Attacker Engine
-- **Attack Engine** (`ai-architecture/attacker/attack_engine.py`) - Attack generation
-- **Mutator** (`ai-architecture/attacker/mutator.py`) - Genetic algorithm
-- **Profiles** (`ai-architecture/attacker/attack_profiles.py`) - Attack types
+- **Hybrid Decoder** (`ai-architecture/decoder/decoder_engine.py`)
+  - Multi-factor fusion (CNN + RNN + DB)
+  - Attention-based token pooling
+  - Adaptive thresholds per source IP
+  - Correlation engine for multi-stage attacks
 
-### C++ Backend
-- **ids_pipeline.cpp** - Python bindings
-- **ids_mutation_predictor.cpp** - Mutation detection
-- **ids_capture.hpp** - Packet capture
+### Tier 2: Data & Storage
+- **Database Engine** (`ai-architecture/database/db_engine.py`)
+  - Vector Graph Store: local threat signatures
+  - Pinecone integration: cloud vector database
+  - Real-time signature export
+  - Cloud synchronization (every 5 min)
 
-### Network & Integration
-- **Event Bus** (`ai-architecture/event_bus.py`) - Event system
-- **IDS Bridge** (`ai-architecture/network/ids_bridge.py`) - Packet capture
-- **Dashboard** (`ai-architecture/visualizer/dashboard.py`) - Real-time visualization
+- **Mutation Predictor** (`ai-architecture/decoder/mutation_predictor.py`)
+  - Evasion tactic prediction
+  - Pattern learning from database
+  - Real-time pattern reload on DB updates
+
+### Tier 3: Network & Capture
+- **IDS Bridge** (`ai-architecture/network/ids_bridge.py`)
+  - Scapy-based packet capture
+  - Synthetic mode (no network needed)
+  - Live mode (real network traffic)
+  - Remote mode (API-based)
+
+- **Firewall Enforcer** (`ai-architecture/network/firewall_enforcer.py`)
+  - Real-time packet blocking
+  - IP reputation management
+  - Rule optimization
+
+- **Network Config** (`ai-architecture/network/net_config.py`)
+  - Interface discovery
+  - BPF filter configuration
+  - Network setup UI
+
+### Tier 4: Validation & Learning
+- **Training Validator** (`ai-architecture/validation/training_validator.py`)
+  - Real-time FN/FP detection
+  - Automatic database correction
+  - Confidence=0.95 for corrections
+  - Immediate signature export
+
+- **Metrics Tracker** (`ai-architecture/validation/metrics_tracker.py`)
+  - Accuracy, Precision, Recall tracking
+  - FPR/FNR calculation
+  - Per-event logging
+  - Report generation
+
+- **Auto-Corrector** (`ai-architecture/validation/auto_corrector.py`)
+  - FN correction: add missed attacks
+  - FP correction: add blocked benign traffic
+  - Database persistence
+
+### Tier 5: Attack Simulation
+- **Attack Engine** (`ai-architecture/attacker/attack_engine.py`)
+  - Attack generation and scheduling
+  - Feedback reception from IDS
+  - Population management
+  - Generation evolution
+
+- **Mutator** (`ai-architecture/attacker/mutator.py`)
+  - Genetic algorithm implementation
+  - Evasion-first fitness scoring
+  - Mutation and crossover operations
+  - Population diversity management
+
+- **Attack Profiles** (`ai-architecture/attacker/attack_profiles.py`)
+  - DoS/DDoS attacks
+  - C2 Beacon communication
+  - BruteForce attempts
+  - PortScan reconnaissance
+  - DNS Tunneling
+  - Data Exfiltration
+
+### Tier 6: Threat Intelligence
+- **Threat Intelligence Engine** (`ai-architecture/threat_intelligence/threat_intelligence_engine.py`)
+  - Attack processing and enrichment
+  - Decision enhancement
+  - Threat level assessment
+
+- **MITRE Mapper** (`ai-architecture/threat_intelligence/mitre_mapper.py`)
+  - ATT&CK tactic mapping
+  - Technique identification
+  - Framework alignment
+
+- **Campaign Correlator** (`ai-architecture/threat_intelligence/campaign_correlator.py`)
+  - Multi-stage attack detection
+  - Campaign tracking
+  - Threat actor correlation
+
+- **Behavioral Baseline** (`ai-architecture/threat_intelligence/behavioral_baseline.py`)
+  - Baseline establishment
+  - Anomaly detection
+  - Behavioral profiling
+
+### Tier 7: Visualization & UI
+- **Dashboard** (`ai-architecture/visualizer/dashboard.py`)
+  - Pygame-based real-time visualization
+  - Threat metrics display
+  - Attack timeline
+
+- **Tkinter Dashboard** (`ai-architecture/visualizer/dashboard_tk.py`)
+  - Cross-platform GUI
+  - Event bus integration
+  - Live metrics update
+
+- **CLI Dashboard** (`ai-architecture/visualizer/fast_cli.py`)
+  - Terminal-based visualization
+  - Lightweight monitoring
+  - Remote access support
+
+### Supporting Systems
+- **Event Bus** (`ai-architecture/event_bus.py`)
+  - Pub/sub event system
+  - Thread-safe communication
+  - Event filtering and routing
+
+- **Main Pipeline** (`ai-architecture/run.py`)
+  - System orchestration
+  - Component initialization
+  - Pipeline execution
+
+- **C++ Backend** (`ai-architecture/cpp/`)
+  - ids_pipeline.cpp: Python bindings
+  - ids_mutation_predictor.cpp: Mutation detection
+  - ids_ebpf.cpp: eBPF packet capture
+  - 247x performance improvement
 
 ## Usage Examples
 
@@ -285,6 +481,67 @@ Reports saved to:
 - `validation/validation_report.json` - Final metrics
 - `validation/metrics_timeline.jsonl` - Per-event log
 
+## Codebase Analysis
+
+### Codebase Statistics
+- **Total Modules**: 204 Python files
+- **Total Dependencies**: 196 import relationships
+- **Total Classes**: 50+ core classes
+- **Total Functions**: 500+ functions
+- **Lines of Code**: 50,000+
+
+### Module Breakdown
+```
+ai-architecture/
+├── cnn/                    (CNN implementation)
+├── rnn/                    (RNN implementation)
+├── decoder/                (Decision engine)
+├── database/               (Threat storage)
+├── attacker/               (Attack generation)
+├── validation/             (FP/FN detection)
+├── network/                (Packet capture)
+├── threat_intelligence/    (Threat analysis)
+├── visualizer/             (Dashboard & UI)
+├── cpp/                    (C++ backend)
+├── tests/                  (Test suite)
+└── run.py                  (Main entry point)
+```
+
+### Dependency Graph
+The complete codebase dependency graph is available in the `graphify/` folder:
+- **graphify/output/codebase_graph.json** - Complete graph data (JSON)
+- **graphify/output/codebase_graph.dot** - GraphViz format
+- **graphify/GRAPH_CONTEXT.md** - Detailed architecture reference
+- **graphify/README.md** - Graph analysis guide
+
+Generate fresh graph:
+```bash
+python graphify/generate_codebase_graph.py
+```
+
+### Key Dependencies
+```
+run.py (Main Pipeline)
+├── cnn.cnn_engine (Gate + Autoencoder)
+├── rnn.rnn_engine (Temporal analysis)
+├── decoder.decoder_engine (Decision making)
+├── decoder.mutation_predictor (Evasion prediction)
+├── database.db_engine (Signature storage)
+├── network.ids_bridge (Packet capture)
+├── validation.training_validator (FN/FP correction)
+├── attacker.attack_engine (Attack simulation)
+├── threat_intelligence.threat_intelligence_engine (Threat analysis)
+└── visualizer.dashboard (Real-time visualization)
+```
+
+### Event Bus Communication
+Key events flowing through the system:
+- `decoder_output` - Decoder emits decisions
+- `db_updated` - Database emits updates
+- `db_retrieved` - Database emits retrieved records
+- `attack_feedback` - Firewall emits feedback
+- `threat_intelligence` - TI engine emits enrichment
+
 ## Testing
 
 ```bash
@@ -295,6 +552,9 @@ python -m pytest tests/
 python tests/test_cpp_ids.py
 python tests/test_validation_metrics.py
 python tests/test_auto_correction.py
+
+# Run 5-minute co-evolution test
+python test_coevo_5min.py
 ```
 
 ## Performance Optimization
@@ -365,30 +625,68 @@ python attacker/run_attacker.py --remote <IDS_IP>
 ```
 AI-IDS-pipeline/
 ├── README.md (this file)
-├── REPO_DESCRIPTION.md (project overview)
+├── PRODUCTION_DEPLOYMENT_ARCHITECTURE.md (deployment guide)
 ├── .gitignore
 │
-├── Stage_1_Foundation_CNN/
-│   └── README.md (CNN guide)
-│
-├── Stage_2_Pattern_Recognition_RNN/
-│   └── README.md (RNN guide)
-│
-├── Stage_3_Decision_Engine/
-│   └── README.md (Decoder guide)
+├── graphify/
+│   ├── generate_codebase_graph.py (graph generator)
+│   ├── README.md (graphify guide)
+│   ├── GRAPH_CONTEXT.md (architecture reference)
+│   └── output/
+│       ├── codebase_graph.json (complete graph)
+│       └── codebase_graph.dot (GraphViz format)
 │
 ├── ai-architecture/
 │   ├── cnn/ (CNN implementation)
+│   │   └── cnn_engine.py
 │   ├── rnn/ (RNN implementation)
+│   │   └── rnn_engine.py
 │   ├── decoder/ (Decision engine)
+│   │   ├── decoder_engine.py
+│   │   └── mutation_predictor.py
 │   ├── database/ (Threat storage)
+│   │   └── db_engine.py
 │   ├── attacker/ (Attack generation)
+│   │   ├── attack_engine.py
+│   │   ├── mutator.py
+│   │   ├── attack_profiles.py
+│   │   └── README.md
 │   ├── validation/ (FP/FN detection)
-│   ├── cpp/ (C++ backend)
+│   │   ├── training_validator.py
+│   │   ├── metrics_tracker.py
+│   │   └── auto_corrector.py
 │   ├── network/ (Packet capture)
-│   ├── visualizer/ (Dashboard)
+│   │   ├── ids_bridge.py
+│   │   ├── firewall_enforcer.py
+│   │   ├── net_config.py
+│   │   └── setup_screen.py
+│   ├── threat_intelligence/ (Threat analysis)
+│   │   ├── threat_intelligence_engine.py
+│   │   ├── mitre_mapper.py
+│   │   ├── campaign_correlator.py
+│   │   └── behavioral_baseline.py
+│   ├── visualizer/ (Dashboard & UI)
+│   │   ├── dashboard.py
+│   │   ├── dashboard_tk.py
+│   │   └── fast_cli.py
+│   ├── cpp/ (C++ backend)
+│   │   ├── ids_pipeline.cpp
+│   │   ├── ids_mutation_predictor.cpp
+│   │   ├── ids_ebpf.cpp
+│   │   └── build.py
 │   ├── tests/ (Test suite)
-│   └── run.py (Main entry point)
+│   │   ├── test_validation_integration.py
+│   │   ├── test_cpp_ids.py
+│   │   ├── test_mutation_predictor.py
+│   │   └── ... (20+ test files)
+│   ├── run.py (Main entry point)
+│   ├── train.bat (Training script)
+│   ├── test_5min.bat (5-minute test)
+│   ├── TRAINING_GUIDE.bat (Training guide)
+│   ├── test_coevo_5min.py (Co-evolution test)
+│   ├── event_bus.py (Event system)
+│   ├── requirements.txt (Dependencies)
+│   └── README.md (AI-architecture guide)
 │
 └── real_datasets/ (Training data)
     └── 19 CSV files from ISCX/NSL-KDD
